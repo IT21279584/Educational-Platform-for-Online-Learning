@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/notes")
+@RequestMapping("/api/notes")
 public class NoteController {
 
     @Autowired
     private NoteService noteService;
 
-    @PostMapping("/upload")
+    @PostMapping("/upload/{courseId}")
     public ResponseEntity<String> uploadLectureNote(
-            @RequestParam("courseId") Integer courseId,
+            @PathVariable("courseId") Integer courseId,
             @RequestParam("title") String title,
             @RequestParam("file") MultipartFile file
     ) {
