@@ -44,4 +44,19 @@ public class QuizServiceImpl implements QuizService {
 
         return quizRepository.save(quiz);
     }
+
+    @Override
+    public List<Question> getAllQuestionsByQuizIdAndCourseId(Integer quizId, Integer courseId) {
+        Optional<Quiz> quizOptional = quizRepository.findById(quizId);
+        if (quizOptional.isPresent()) {
+            Quiz quiz = quizOptional.get();
+            if (quiz.getCourse().getCourseId().equals(courseId)) {
+                return quiz.getQuestionList();
+            } else {
+                throw new IllegalArgumentException("Quiz with ID " + quizId + " is not associated with Course ID " + courseId);
+            }
+        } else {
+            throw new IllegalArgumentException("Quiz with ID " + quizId + " not found");
+        }
+    }
 }
