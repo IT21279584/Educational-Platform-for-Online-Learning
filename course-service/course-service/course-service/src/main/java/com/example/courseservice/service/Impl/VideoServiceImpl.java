@@ -62,5 +62,8 @@ public class VideoServiceImpl implements VideoService {
         videoRepository.save(video);
     }
 
-
+    @Override
+    public List<Video> getAllVideosByCourseId(Integer courseId) {
+        return videoRepository.findByCourseCourseId(courseId);
+    }
 }
