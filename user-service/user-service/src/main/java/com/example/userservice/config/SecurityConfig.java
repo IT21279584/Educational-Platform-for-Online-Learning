@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req
                         //.requestMatch/ers("/token/**").permitAll()
                         .requestMatchers("/api/users/login").permitAll()
-                        .requestMatchers("/api/user/register").permitAll()
+                        .requestMatchers("/api/users/register").permitAll()
                         .requestMatchers("/").permitAll()
 
 
