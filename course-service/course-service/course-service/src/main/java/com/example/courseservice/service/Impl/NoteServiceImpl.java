@@ -1,5 +1,6 @@
 package com.example.courseservice.service.Impl;
 
+import com.amazonaws.services.kms.model.NotFoundException;
 import com.example.courseservice.entity.Course;
 import com.example.courseservice.entity.Note;
 import com.example.courseservice.repository.NoteRepository;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -60,5 +62,14 @@ public class NoteServiceImpl implements NoteService {
         note.setTitle(title);
         note.setCourse(course);
         noteRepository.save(note);
+    }
+
+    @Override
+    public List<Note> getAllLectureNotesByCourseId(Integer courseId) {
+        List<Note> notes = noteRepository.findByCourseCourseId(courseId);
+        if (notes.isEmpty()) {
+            throw new NotFoundException("No lecture notes found for courseId: " + courseId);
+        }
+        return notes;
     }
 }
