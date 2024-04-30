@@ -18,10 +18,10 @@ public class VideoController {
     private VideoServiceImpl videoService;
 
     @PostMapping("/upload/{courseId}")
-    public ResponseEntity<String> uploadVideo(@PathVariable Integer courseId, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadVideo(@PathVariable Integer courseId, @RequestParam("file") MultipartFile file, @RequestParam("description") String description) {
         try {
             // Upload video to Amazon S3 and get the URL
-            String s3Url = videoService.uploadVideo(courseId, file);
+            String s3Url = videoService.uploadVideo(courseId, file,description);
 
             // Return Amazon S3 URL to frontend
             return ResponseEntity.ok(s3Url);
@@ -34,5 +34,10 @@ public class VideoController {
     @GetMapping("/{courseId}")
     public List<Video> getAllVideosByCourseId(@PathVariable Integer courseId){
         return videoService.getAllVideosByCourseId(courseId);
+    }
+
+    @GetMapping("/all")
+    public List<Video> getAllVideos(){
+        return videoService.getAllVideos();
     }
 }

@@ -17,6 +17,9 @@ public class Video {
     @Column(name = "videoId")
     private Integer videoId;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "s3_url")
     private String s3Url;
 
