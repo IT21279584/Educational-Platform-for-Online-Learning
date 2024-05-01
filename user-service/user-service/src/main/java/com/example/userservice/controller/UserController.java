@@ -6,10 +6,9 @@ import com.example.userservice.entity.User;
 import com.example.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -35,5 +34,9 @@ public class UserController {
         User newUser = new User(id, email, username,  encryptedPassword, role, userCode);
 
         return userService.saveUser(newUser);
+    }
+    @GetMapping("/course/{courseId}")
+    public List<User> findByCourse(@PathVariable("courseId") Integer courseId){
+        return userService.findByCourse(courseId);
     }
 }
