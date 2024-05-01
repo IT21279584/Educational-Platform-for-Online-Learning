@@ -147,7 +147,7 @@ const CreateQuiz = () => {
                         parseInt(e.target.value)
                       )
                     }
-                    className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                    className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-slate-800"
                   >
                     {question.options.map((_, i) => (
                       <option key={i} value={i}>
@@ -161,14 +161,14 @@ const CreateQuiz = () => {
             <button
               type="button"
               onClick={handleAddQuestion}
-              className="mt-4 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 first-line:flex float-end"
+              className="mt-4 p-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 first-line:flex float-end"
             >
               Add Question
             </button>
           </div>
           <button
             type="submit"
-            className="mt-4 p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full"
+            className="mt-4 p-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 w-full"
           >
             Submit
           </button>

@@ -9,6 +9,7 @@ import UploadNote from "./components/UploadNote.jsx";
 import ProgressIndicator from "./Layouts/ProgressIndicator.jsx";
 import HomePage from "./Pages/HomePage.jsx";
 import Sidebar from "./Pages/Sidebar.jsx";
+import Login from "./components/Login.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/api/progress" element={<ProgressIndicator />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/side" element={<Sidebar />} />
+        <Route path="/api/login" element={<Login />} />
       </Routes>
     </Router>
   );
