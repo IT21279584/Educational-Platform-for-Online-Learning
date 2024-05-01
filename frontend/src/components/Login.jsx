@@ -1,10 +1,11 @@
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
     <div className="">
-      <Navbar/>
+      <Navbar />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -77,7 +78,7 @@ export default function Login() {
               href="#"
               className="font-semibold leading-6 text-slate-600 hover:text-slate-500"
             >
-              Sign Up
+              <Link to="/api/register">Sign Up</Link>
             </a>
           </p>
         </div>

@@ -1,9 +1,74 @@
+import { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
 
 export default function Register() {
+  const [formData, setFormData] = useState({
+    email: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Check if passwords match
+    if (formData.password !== formData.confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Passwords Do Not Match",
+        text: "Please make sure your passwords match.",
+      });
+      return;
+    }
+
+    // Check if any required fields are empty
+    for (const field in formData) {
+      if (formData[field] === "") {
+        Swal.fire({
+          icon: "error",
+          title: "Required Fields Missing",
+          text: "Please fill in all required fields.",
+        });
+        return;
+      }
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/users/register",
+        formData
+      );
+      console.log(response.data);
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "You have successfully registered!",
+      });
+    } catch (error) {
+      console.error("Registration failed:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "An error occurred while registering. Please try again later.",
+      });
+    }
+  };
+
   return (
-    <div className="">
+    <div>
       <Navbar />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -19,7 +84,7 @@ export default function Register() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -34,6 +99,7 @@ export default function Register() {
                   type="email"
                   autoComplete="email"
                   required
+                  onChange={handleChange}
                   className="pl-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -53,6 +119,7 @@ export default function Register() {
                   type="text"
                   autoComplete="username"
                   required
+                  onChange={handleChange}
                   className="pl-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -61,7 +128,7 @@ export default function Register() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 text-left"
               >
                 Password
               </label>
@@ -72,6 +139,7 @@ export default function Register() {
                   type="password"
                   autoComplete="new-password"
                   required
+                  onChange={handleChange}
                   className="pl-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -80,7 +148,7 @@ export default function Register() {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 text-left"
               >
                 Confirm Password
               </label>
@@ -91,6 +159,7 @@ export default function Register() {
                   type="password"
                   autoComplete="new-password"
                   required
+                  onChange={handleChange}
                   className="pl-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -107,13 +176,7 @@ export default function Register() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Already have an account?{" "}
-            <a
-              href="#"
-              className="font-semibold leading-6 text-slate-600 hover:text-slate-500"
-            >
-              Sign In
-            </a>
+            Already have an account? <Link to="/api/login">Sign In</Link>
           </p>
         </div>
       </div>

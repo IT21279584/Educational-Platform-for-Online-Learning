@@ -10,6 +10,7 @@ import ProgressIndicator from "./Layouts/ProgressIndicator.jsx";
 import HomePage from "./Pages/HomePage.jsx";
 import Sidebar from "./Pages/Sidebar.jsx";
 import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/side" element={<Sidebar />} />
         <Route path="/api/login" element={<Login />} />
-      </Routes>
+        <Route path="/api/register" element={<Register />} />      </Routes>
     </Router>
   );
 }
