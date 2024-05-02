@@ -36,4 +36,9 @@ public class Course {
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Video> videos;
+
+    @Column(name = "userId")
+    private Integer userId;
+
+
 }

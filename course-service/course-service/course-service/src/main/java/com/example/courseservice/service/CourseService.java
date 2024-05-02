@@ -10,5 +10,7 @@ public interface CourseService {
     Optional<Course> getCourse(Integer courseId);
     List<Course> getCourses();
     void deleteCourse(Integer courseId);
+    Course createCourse(Course course);
+
 
 }

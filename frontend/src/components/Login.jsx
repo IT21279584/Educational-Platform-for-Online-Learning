@@ -1,8 +1,46 @@
+import { useState } from "react";
+import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
+
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
-import { Link } from "react-router-dom";
 
 export default function Login() {
+  const history = useHistory();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/users/login",
+        formData
+      );
+      console.log(response.data);
+      // Redirect to dashboard after successful login
+      history.push("/dashboard");
+    } catch (error) {
+      console.error("Login failed:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Invalid email or password. Please try again.",
+      });
+    }
+  };
+
   return (
     <div className="">
       <Navbar />
@@ -20,7 +58,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -35,6 +73,7 @@ export default function Login() {
                   type="email"
                   autoComplete="email"
                   required
+                  onChange={handleChange}
                   className="pl-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -57,6 +96,7 @@ export default function Login() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  onChange={handleChange}
                   className="pl-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -74,12 +114,12 @@ export default function Login() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Don't have an account?{" "}
-            <a
-              href="#"
+            <Link
+              to="/api/register"
               className="font-semibold leading-6 text-slate-600 hover:text-slate-500"
             >
-              <Link to="/api/register">Sign Up</Link>
-            </a>
+              Sign Up
+            </Link>
           </p>
         </div>
       </div>

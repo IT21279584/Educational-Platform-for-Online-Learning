@@ -5,4 +5,6 @@ import com.example.userservice.entity.User;
 
 public interface UserService {
     User saveUser(User user);
+    User getUserById(Integer userId);
+
 }

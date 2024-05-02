@@ -5,11 +5,9 @@ import com.example.userservice.entity.Role;
 import com.example.userservice.entity.User;
 import com.example.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -26,7 +24,7 @@ public class UserController {
         String username  = user.getUsername();
         String password = user.getPassword();
         Role role = user.getRole();
-        String id = user.get_id();
+        Integer id = user.getUserId();
         String email = user.getEmail();
         String userCode = user.getUserCode();
 
@@ -35,5 +33,16 @@ public class UserController {
         User newUser = new User(id, email, username,  encryptedPassword, role, userCode);
 
         return userService.saveUser(newUser);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable Integer userId) {
+        User user = userService.getUserById(userId);
+        if (user != null) {
+
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
