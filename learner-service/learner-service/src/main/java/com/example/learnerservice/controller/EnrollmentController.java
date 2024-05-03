@@ -4,10 +4,7 @@ import com.example.learnerservice.model.Enrollment;
 import com.example.learnerservice.model.EnrollmentId;
 import com.example.learnerservice.service.EnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/enroll")
@@ -21,5 +18,10 @@ public class EnrollmentController {
     public Enrollment enrollment(@RequestBody EnrollmentId enrollmentId) {
         return enrollmentService.enrollment(enrollmentId);
     }
+    @DeleteMapping("/unenroll/{enrollId}")
+    public void unenroll(@PathVariable Integer enrollId) {
+        enrollmentService.unenroll(enrollId);
+    }
+
 
 }
