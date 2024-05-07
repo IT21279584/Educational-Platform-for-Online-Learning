@@ -11,6 +11,9 @@ import HomePage from "./Pages/HomePage.jsx";
 import Sidebar from "./Pages/Sidebar.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
+import NotFound from "./components/NotFound.jsx";
+import VideoList from "./components/VideoList.jsx";
+import VideoLearner from "./components/VideoLearner.jsx";
 
 function App() {
   return (
@@ -25,7 +28,12 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/side" element={<Sidebar />} />
         <Route path="/api/login" element={<Login />} />
-        <Route path="/api/register" element={<Register />} />      </Routes>
+        <Route path="/api/register" element={<Register />} />
+
+        <Route path="/api/video/all" element={<VideoList />} />
+        <Route path="/api/video-learner/:videoId" element={<VideoLearner />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Router>
   );
 }
