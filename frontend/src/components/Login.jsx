@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { jwtDecode } from "jwt-decode";
 
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
@@ -21,30 +22,44 @@ const navigate = useNavigate()
     });
   };
 
- const handleSubmit = async (event) => {
-   event.preventDefault();
-   try {
-     const response = await axios.post(
-       "http://localhost:8082/api/users/login",
-       formData
-     );
-     const { token } = response.data;
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const response = await axios.post(
+      "http://localhost:8082/api/users/login",
+      formData
+    );
+    const { token } = response.data;
 
-     // Store token and isLoggedIn status in local storage
-     localStorage.setItem("token", token);
-     localStorage.setItem("isLoggedIn", true);
+    // Store token and isLoggedIn status in local storage
+    localStorage.setItem("token", token);
+    localStorage.setItem("isLoggedIn", true);
 
-     // Redirect to dashboard after successful login
-     navigate("/");
-   } catch (error) {
-     console.error("Login failed:", error);
-     Swal.fire({
-       icon: "error",
-       title: "Login Failed",
-       text: "Invalid username or password. Please try again.",
-     });
-   }
- };
+    // Decode the JWT token to extract user information
+    const decodedToken = jwtDecode(token);
+    const roles = Array.isArray(decodedToken.role)
+      ? decodedToken.role
+      : [decodedToken.role];
+
+    // Check if ROLE_INSTRUCTOR exists in the roles array
+    const isInstructor = roles.includes("ROLE_INSTRUCTOR");
+
+    // Navigate based on user role
+    if (isInstructor) {
+      navigate("/api/instructor/dashboard");
+    } else {
+      navigate("/");
+    }
+  } catch (error) {
+    console.error("Login failed:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Login Failed",
+      text: "Invalid username or password. Please try again.",
+    });
+  }
+};
+
 
 
   return (
