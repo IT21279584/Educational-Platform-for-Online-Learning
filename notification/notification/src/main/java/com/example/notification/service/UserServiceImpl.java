@@ -46,11 +46,11 @@ public class UserServiceImpl implements UserService{
             throw new UserAlreadyExistsException(UserConstants.USER_ALREADY_EXISTS);
         User user = UserMapper.mapToUser(new User(),requestDto);
         emailService.sendEmail(EmailDetails.builder()
-                .messageBody("Welcome to LearnNV!\n\n";
-                "Hi, " + requestDto.getEmail() + "!\n\n";
-                "Congratulations on enrolling in a new course module. This is a big step, and we're excited to have you join us.\n\n";
-                "Browse the courses available to you and begin your learning journey now.\n\n";
-                "Best regards,\nThe LearnNV Team";)
+                .messageBody("Welcome to LearnNV!\n\n" +
+                "Hi, " + requestDto.getCourseId() + "!\n\n" +
+                "Congratulations on enrolling in a new course module. This is a big step, and we're excited to have you join us.\n\n" +
+                "Browse the courses available to you and begin your learning journey now.\n\n" +
+                "Best regards,\nThe LearnNV Team")
                 .recipient(requestDto.getEmail())
                 .subject("ENROLL SUCCESS")
                 .build());
