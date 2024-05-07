@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -37,5 +38,10 @@ public class CourseController {
     @GetMapping("/{courseId}")
     public Optional<Course> getCourse(@PathVariable Integer courseId){
         return courseService.getCourse(courseId);
+    }
+
+    @GetMapping("/course/{userId}")
+    public List<Course> getVideosByUserId(@PathVariable Integer userId){
+        return courseService.getVideosByUserId(userId);
     }
 }

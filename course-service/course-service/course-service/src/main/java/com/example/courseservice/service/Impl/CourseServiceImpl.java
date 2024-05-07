@@ -55,6 +55,11 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.save(course);
     }
 
+    @Override
+    public List<Course> getVideosByUserId(Integer userId) {
+        return courseRepository.findByUserId(userId);
+    }
+
     private UserDTO getUserDetails(Integer userId) {
         String userUrl = "http://localhost:8082/api/users/" + userId; // Assuming this is your user service endpoint
         return restTemplate.getForObject(userUrl, UserDTO.class);
