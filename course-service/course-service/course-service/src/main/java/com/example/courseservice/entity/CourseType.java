@@ -1,8 +1,8 @@
 package com.example.courseservice.entity;
 
-public enum Category {
+public enum CourseType {
 
     BEGINNER_LEVEL,
-    INTERMIDIATE_LEVEL,
+    INTERMEDIATE_LEVEL,
     ADVANCED_LEVEL
 }
