@@ -18,7 +18,7 @@ const Quiz = () => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/quiz/${quizId}/courses/${courseId}/questions`
+          `http://localhost:8083/api/quiz/${quizId}/courses/${courseId}/questions`
         );
         setQuestions(response.data);
         setLoading(false);
@@ -70,13 +70,13 @@ const Quiz = () => {
   let questionNumber = 1; // Initialize question number
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
+    <div className="max-w-3xl p-4 mx-auto">
       {showResult && !congratulations && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+        <div className="relative px-4 py-3 mb-6 text-red-700 bg-red-100 border border-red-400 rounded">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 inline-block mr-1"
+              className="inline-block w-6 h-6 mr-1"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -96,11 +96,11 @@ const Quiz = () => {
         </div>
       )}
       {congratulations && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6">
+        <div className="relative px-4 py-3 mb-6 text-green-700 bg-green-100 border border-green-400 rounded">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 inline-block mr-1"
+              className="inline-block w-6 h-6 mr-1"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -126,17 +126,17 @@ const Quiz = () => {
           </div>
         </div>
       )}
-      <h2 className="text-3xl font-semibold mb-8">Quiz</h2>
+      <h2 className="mb-8 text-3xl font-semibold">Quiz</h2>
       <div className="space-y-8">
         {questions.map((question) => (
           <div
             key={question.questionId}
-            className="mb-8 border border-gray-200 rounded p-4"
+            className="p-4 mb-8 border border-gray-200 rounded"
           >
             <h3 className="mb-4 text-left">
-              <span className="font-semibold mr-3">{questionNumber++}.</span>
+              <span className="mr-3 font-semibold">{questionNumber++}.</span>
               {question.question}
-              <span className="float-right bg-slate-300 px-2 py-1 rounded-md text-sm font-bold">
+              <span className="float-right px-2 py-1 text-sm font-bold rounded-md bg-slate-300">
                 1 Point
               </span>
             </h3>
@@ -160,7 +160,7 @@ const Quiz = () => {
                       onChange={() =>
                         handleOptionSelect(question.questionId, index)
                       }
-                      className="form-radio h-4 w-4 text-blue-600 ml-6"
+                      className="w-4 h-4 ml-6 text-blue-600 form-radio"
                     />
                     <span className="ml-2">{option}</span>
                   </label>
@@ -173,7 +173,7 @@ const Quiz = () => {
                   <div className="text-green-700">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 inline-block mr-1"
+                      className="inline-block w-6 h-6 mr-1"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -199,7 +199,7 @@ const Quiz = () => {
                   <div className="text-red-700">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 inline-block mr-1"
+                      className="inline-block w-6 h-6 mr-1"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -232,9 +232,9 @@ const Quiz = () => {
             type="checkbox"
             checked={checkboxChecked}
             onChange={() => setCheckboxChecked(!checkboxChecked)}
-            className="form-checkbox h-5 w-5 text-blue-600"
+            className="w-5 h-5 text-blue-600 form-checkbox"
           />
-          <span className="ml-2 text-left m-6">
+          <span className="m-6 ml-2 text-left">
             I understand that submitting work that isn’t my own may result in
             permanent failure of this course.
           </span>
