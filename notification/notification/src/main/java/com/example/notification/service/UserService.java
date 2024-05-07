@@ -10,6 +10,8 @@ public interface UserService {
 
     public void registerUser(RequestDto requestDto);
 
+    public void enrollUser(RequestDto requestDto);
+
     public UserDetailsDto getUserByEmail(String email);
 
     public List<UserDetailsDto> getAllUsers();
