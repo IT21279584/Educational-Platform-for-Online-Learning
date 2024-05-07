@@ -19,12 +19,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/enroll")
+    @PostMapping("/register")
     public ResponseEntity<ResponseDto> registerUser(@RequestBody RequestDto requestDto){
         userService.registerUser(requestDto);
         return new ResponseEntity<>(ResponseDto.builder()
                 .statusCode(HttpStatus.CREATED.toString())
                 .statusMsg(UserConstants.REGISTRATION_SUCCESS)
+                .build(), HttpStatus.OK);
+    }
+
+    @PostMapping("/enroll")
+    public ResponseEntity<ResponseDto> registerUser(@RequestBody RequestDto requestDto){
+        userService.registerUser(requestDto);
+        return new ResponseEntity<>(ResponseDto.builder()
+                .statusCode(HttpStatus.CREATED.toString())
+                .statusMsg(UserConstants.ENROLL_SUCCESS)
                 .build(), HttpStatus.OK);
     }
 
