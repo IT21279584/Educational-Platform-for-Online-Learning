@@ -2,9 +2,9 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-gray-900 mt-14">
+      <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Column 1 */}
           <div>
             <h3 className="text-lg font-bold text-white">About Us</h3>
@@ -54,11 +54,11 @@ const Footer = () => {
             <div className="flex items-center mt-4">
               <a
                 href="#"
-                className="text-gray-400 hover:text-white mr-4"
+                className="mr-4 text-gray-400 hover:text-white"
                 aria-label="Facebook"
               >
                 <svg
-                  className="h-6 w-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,11 +72,11 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white mr-4"
+                className="mr-4 text-gray-400 hover:text-white"
                 aria-label="Twitter"
               >
                 <svg
-                  className="h-6 w-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ const Footer = () => {
                 aria-label="LinkedIn"
               >
                 <svg
-                  className="h-6 w-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
