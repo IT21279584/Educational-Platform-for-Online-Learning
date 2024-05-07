@@ -29,8 +29,8 @@ public class UserController {
     }
 
     @PostMapping("/enroll")
-    public ResponseEntity<ResponseDto> registerUser(@RequestBody RequestDto requestDto){
-        userService.registerUser(requestDto);
+    public ResponseEntity<ResponseDto> enrollUser(@RequestBody RequestDto requestDto){
+        userService.enrollUser(requestDto);
         return new ResponseEntity<>(ResponseDto.builder()
                 .statusCode(HttpStatus.CREATED.toString())
                 .statusMsg(UserConstants.ENROLL_SUCCESS)
