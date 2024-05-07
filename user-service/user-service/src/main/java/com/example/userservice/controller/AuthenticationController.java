@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.example.userservice.constants.Constant.SECRET_KEY;
 
@@ -47,10 +46,18 @@ public class AuthenticationController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User details not found");
             }
 
+            // Get user roles
+            Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+            List<String> role = new ArrayList<>();
+            for (GrantedAuthority authority : authorities) {
+                role.add(authority.getAuthority());
+            }
+
             // Build claims
             Map<String, Object> claims = new HashMap<>();
             claims.put("sub", userDetails.getUsername());
             claims.put("iat", new Date().getTime());
+            claims.put("role", role); // Add roles as a claim
 
             // Generate JWT token
             String token = Jwts.builder()
@@ -72,4 +79,5 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred: " + e.getMessage());
         }
     }
+
 }
