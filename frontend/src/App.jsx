@@ -14,6 +14,8 @@ import Register from "./components/Register.jsx";
 import NotFound from "./components/NotFound.jsx";
 import VideoList from "./components/VideoList.jsx";
 import VideoLearner from "./components/VideoLearner.jsx";
+import InstructorRegister from "./components/InstructorRegistration.jsx";
+import InstructorDashboard from "./components/InstructorDashboard.jsx";
 
 function App() {
   return (
@@ -29,7 +31,14 @@ function App() {
         <Route path="/side" element={<Sidebar />} />
         <Route path="/api/login" element={<Login />} />
         <Route path="/api/register" element={<Register />} />
-
+        <Route
+          path="/api/instructor/register"
+          element={<InstructorRegister />}
+        />
+        <Route
+          path="/api/instructor/dashboard"
+          element={<InstructorDashboard />}
+        />
         <Route path="/api/video/all" element={<VideoList />} />
         <Route path="/api/video-learner/:videoId" element={<VideoLearner />} />
         <Route path="*" element={<NotFound />} />
