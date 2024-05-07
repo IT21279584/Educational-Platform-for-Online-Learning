@@ -58,11 +58,14 @@ public class AuthenticationController {
                     .setExpiration(new Date(System.currentTimeMillis() + 864000000)) // Token validity: 10 days
                     .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                     .compact();
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
 
             System.out.println("Generated Token: " + token);
             System.out.println("SecretKey : " + SECRET_KEY);
 
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(response);
+
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect username or password");
         } catch (Exception e) {
