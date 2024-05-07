@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/videos")
@@ -39,5 +40,10 @@ public class VideoController {
     @GetMapping("/all")
     public List<Video> getAllVideos(){
         return videoService.getAllVideos();
+    }
+
+    @GetMapping("/video/{videoId}")
+    public Optional<Video> getVideo(@PathVariable Integer videoId){
+        return videoService.getVideo(videoId);
     }
 }
