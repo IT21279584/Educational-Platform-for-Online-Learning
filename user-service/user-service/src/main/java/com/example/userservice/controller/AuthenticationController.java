@@ -2,6 +2,8 @@ package com.example.userservice.controller;
 
 
 import com.example.userservice.entity.AuthenticationRequest;
+import com.example.userservice.entity.User;
+import com.example.userservice.entity.UserAuthenticationDetails;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.http.HttpStatus;
@@ -52,11 +54,12 @@ public class AuthenticationController {
             for (GrantedAuthority authority : authorities) {
                 role.add(authority.getAuthority());
             }
-
+            Integer userId = getUserIdFromUserDetails(userDetails);
             // Build claims
             Map<String, Object> claims = new HashMap<>();
             claims.put("sub", userDetails.getUsername());
             claims.put("iat", new Date().getTime());
+            claims.put("userId", userId); // Add userId as a claim
             claims.put("role", role); // Add roles as a claim
 
             // Generate JWT token
@@ -79,5 +82,16 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred: " + e.getMessage());
         }
     }
+    // Method to retrieve userId from UserDetails
+    // Method to retrieve userId from UserDetails
+    private Integer getUserIdFromUserDetails(UserDetails userDetails) {
+        if (userDetails instanceof UserAuthenticationDetails) {
+            UserAuthenticationDetails userAuthDetails = (UserAuthenticationDetails) userDetails;
+            User user = userAuthDetails.getUser();
+            return user.getUserId(); // Assuming you have a getId() method in your User class
+        }
+        return null;
+    }
+
 
 }
