@@ -104,10 +104,8 @@ const VideoLearner = () => {
         </div>
         <div>
           <div className="p-6 bg-white rounded-lg shadow-md">
-            <h2 className="mb-2 text-2xl font-bold ">
-              {courseDetails.title}
-                      </h2>
-                      <hr/>
+            <h2 className="mb-2 text-2xl font-bold ">{courseDetails.title}</h2>
+            <hr />
             <p className="mt-4 mb-2 font-semibold text-left text-gray-600">
               {courseDetails.category}
             </p>
@@ -125,8 +123,8 @@ const VideoLearner = () => {
             </p>
           </div>
           <div className="p-6 mt-5 bg-white rounded-lg shadow-md">
-                      <h2 className="mb-2 text-lg font-bold">Course Description</h2>
-                      <hr/>
+            <h2 className="mb-2 text-lg font-bold">Course Description</h2>
+            <hr />
             <p className="mt-4 text-justify text-gray-600">
               {courseDetails.description}
             </p>
