@@ -13,4 +13,6 @@ public interface CourseService {
     Course createCourse(Course course);
 
     List<Course> getVideosByUserId(Integer userId);
+
+    Course updateCourse(Integer courseId, Course updatedCourse);
 }
