@@ -54,7 +54,9 @@ function App() {
         <Route path="/api/course/add" element={<CreateCourse />} />
         {/* <Route path="/api/course/single" element={<SingleCoursePage />} /> */}
         <Route path="/api/video-learner/:videoId" element={<VideoLearner />} />
+
         <Route path="/api/user" element={<UserDetails />} />
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
