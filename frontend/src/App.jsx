@@ -21,6 +21,7 @@ import VideoCourseList from "./components/VideoCourseList.jsx";
 import NoteCourseList from "./components/NoteCourseList.jsx";
 import QuizCourseList from "./components/QuizCourseList.jsx";
 import CreateCourse from "./components/CreateCourse.jsx";
+import UserDetails from "./components/UserDetails.jsx";
 // import SingleCoursePage from "./components/SingleCourse.jsx";
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
         <Route path="/api/course/add" element={<CreateCourse />} />
         {/* <Route path="/api/course/single" element={<SingleCoursePage />} /> */}
         <Route path="/api/video-learner/:videoId" element={<VideoLearner />} />
+
+        <Route path="/api/user" element={<UserDetails />} />
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
