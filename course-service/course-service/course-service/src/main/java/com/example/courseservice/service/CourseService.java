@@ -12,5 +12,5 @@ public interface CourseService {
     void deleteCourse(Integer courseId);
     Course createCourse(Course course);
 
-
+    List<Course> getVideosByUserId(Integer userId);
 }

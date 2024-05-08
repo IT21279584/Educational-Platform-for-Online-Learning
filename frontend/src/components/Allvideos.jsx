@@ -16,7 +16,7 @@ const AllVideos = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/videos/${courseId}`
+          `http://localhost:8083/api/videos/${courseId}`
         );
         const sortedVideos = response.data.sort(
           (a, b) => a.videoId - b.videoId
@@ -66,14 +66,14 @@ const AllVideos = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-semibold mb-4 text-center text-gray-800">
+    <div className="max-w-4xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
+      <h2 className="mb-4 text-3xl font-semibold text-center text-gray-800">
         All Videos
       </h2>
       {selectedVideo && (
-        <div className="mb-8 rounded-lg overflow-hidden shadow-xl bg-gray-100">
+        <div className="mb-8 overflow-hidden bg-gray-100 rounded-lg shadow-xl">
           <div key={selectedVideo.videoId} className="mb-4">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 bg-gray-200 py-2 px-4">
+            <h3 className="px-4 py-2 mb-2 text-xl font-semibold text-gray-800 bg-gray-200">
               Video ID: {selectedVideo.videoId}
             </h3>
             <div className="aspect-w-16 aspect-h-9">
@@ -87,8 +87,8 @@ const AllVideos = () => {
                 <source src={selectedVideo.s3Url} type="video/mp4" />
                 Your browser does not support the video tag.
                           </video>
-                          <h1 className="m-5 text-left font-bold text-3xl">Description</h1>
-              <p className="mb-2 px-4 text-justify font-serif text-lg max-h-40 overflow-y-auto">
+                          <h1 className="m-5 text-3xl font-bold text-left">Description</h1>
+              <p className="px-4 mb-2 overflow-y-auto font-serif text-lg text-justify max-h-40">
                 <span className="text-gray-700"></span>{" "}
                 {selectedVideo.description.slice(0, 1000)}
               </p>
@@ -96,10 +96,10 @@ const AllVideos = () => {
           </div>
         </div>
       )}
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex items-center justify-between mt-4">
         <button
           onClick={handlePrevPage}
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg focus:outline-none"
+          className="px-4 py-2 font-semibold text-gray-800 bg-gray-300 rounded-lg hover:bg-gray-400 focus:outline-none"
         >
           Previous
         </button>

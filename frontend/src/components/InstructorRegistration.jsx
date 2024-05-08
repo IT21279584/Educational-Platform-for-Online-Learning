@@ -6,13 +6,12 @@ import Swal from "sweetalert2";
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
 
-export default function Register() {
+export default function InstructorRegister() {
   const [formData, setFormData] = useState({
     email: "",
     username: "",
     password: "",
     confirmPassword: "",
-    role: "INSTRUCTOR", // Set default role as INSTRUCTOR
   });
 
   const handleChange = (event) => {
@@ -49,7 +48,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8082/api/users/register",
+        "http://localhost:8082/api/users/instructor/register",
         formData
       );
       console.log(response.data);
@@ -178,11 +177,6 @@ export default function Register() {
 
           <p className="mt-10 text-sm text-center text-gray-500">
             Already have an account? <Link to="/api/login">Sign In</Link>
-          </p>
-          <p className="mt-10 text-sm text-center text-gray-500">
-            <Link to="/api/instructor/register">
-              Sign up with your organization
-            </Link>
           </p>
         </div>
       </div>

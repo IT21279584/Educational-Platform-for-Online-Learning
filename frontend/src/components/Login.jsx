@@ -1,16 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { jwtDecode } from "jwt-decode";
 
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
 
 export default function Login() {
-  const history = useHistory();
-
+  
+const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -21,38 +22,58 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/users/login",
-        formData
-      );
-      console.log(response.data);
-      // Redirect to dashboard after successful login
-      history.push("/dashboard");
-    } catch (error) {
-      console.error("Login failed:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Login Failed",
-        text: "Invalid email or password. Please try again.",
-      });
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const response = await axios.post(
+      "http://localhost:8082/api/users/login",
+      formData
+    );
+    const { token } = response.data;
+
+    // Store token and isLoggedIn status in local storage
+    localStorage.setItem("token", token);
+    localStorage.setItem("isLoggedIn", true);
+
+    // Decode the JWT token to extract user information
+    const decodedToken = jwtDecode(token);
+    const roles = Array.isArray(decodedToken.role)
+      ? decodedToken.role
+      : [decodedToken.role];
+
+    // Check if ROLE_INSTRUCTOR exists in the roles array
+    const isInstructor = roles.includes("ROLE_INSTRUCTOR");
+
+    // Navigate based on user role
+    if (isInstructor) {
+      navigate("/api/instructor/dashboard");
+    } else {
+      navigate("/");
     }
-  };
+  } catch (error) {
+    console.error("Login failed:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Login Failed",
+      text: "Invalid username or password. Please try again.",
+    });
+  }
+};
+
+
 
   return (
     <div className="">
       <Navbar />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex flex-col justify-center flex-1 min-h-full px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
+            className="w-auto h-10 mx-auto"
             src={Logo}
             alt="EduNest"
             style={{ fill: "red" }}
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900">
             Sign in to your account
           </h2>
         </div>
@@ -61,17 +82,17 @@ export default function Login() {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900 text-left"
+                htmlFor="username"
+                className="block text-sm font-medium leading-6 text-left text-gray-900"
               >
-                Email address
+                Username
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="username"
+                  name="username"
+                  type="username"
+                  autoComplete="username"
                   required
                   onChange={handleChange}
                   className="pl-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
@@ -112,7 +133,7 @@ export default function Login() {
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
+          <p className="mt-10 text-sm text-center text-gray-500">
             Don't have an account?{" "}
             <Link
               to="/api/register"

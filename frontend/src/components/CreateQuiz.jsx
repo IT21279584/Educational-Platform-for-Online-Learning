@@ -39,7 +39,7 @@ const CreateQuiz = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/quiz/${courseId}`,
+        `http://localhost:8083/api/quiz/${courseId}`,
         {
           title: quizTitle,
           questions: questions,
@@ -59,13 +59,13 @@ const CreateQuiz = () => {
     <div className="flex">
       <Sidebar />
 
-      <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-3xl font-semibold mb-6">Create Quiz</h1>
+      <div className="max-w-3xl p-6 mx-auto bg-white rounded-lg shadow-md">
+        <h1 className="mb-6 text-3xl font-semibold">Create Quiz</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label
               htmlFor="quizTitle"
-              className="block text-md font-medium text-gray-700 text-left"
+              className="block font-medium text-left text-gray-700 text-md"
             >
               Quiz Title
             </label>
@@ -74,26 +74,26 @@ const CreateQuiz = () => {
               id="quizTitle"
               value={quizTitle}
               onChange={(e) => setQuizTitle(e.target.value)}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+              className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>
           <div>
-            <label className="block text-md font-medium text-gray-700 text-left">
+            <label className="block font-medium text-left text-gray-700 text-md">
               Questions
             </label>
             {questions.map((question, index) => (
               <div
                 key={index}
-                className="mt-4 border border-gray-300 rounded p-4 relative"
+                className="relative p-4 mt-4 border border-gray-300 rounded"
               >
                 <button
                   type="button"
-                  className="absolute top-0 right-0 mr-2 mt-2 p-1 rounded-full text-gray-500 hover:text-red-500 focus:outline-none"
+                  className="absolute top-0 right-0 p-1 mt-2 mr-2 text-gray-500 rounded-full hover:text-red-500 focus:outline-none"
                   onClick={() => handleRemoveQuestion(index)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
+                    className="w-5 h-5"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -106,7 +106,7 @@ const CreateQuiz = () => {
                 </button>
                 <label
                   htmlFor={`question${index + 1}`}
-                  className="block text-sm font-medium text-gray-700 text-left ml-5"
+                  className="block ml-5 text-sm font-medium text-left text-gray-700"
                 >
                   Question {index + 1}
                 </label>
@@ -117,7 +117,7 @@ const CreateQuiz = () => {
                   onChange={(e) =>
                     handleQuestionChange(index, "question", e.target.value)
                   }
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+                  className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                 />
                 {question.options.map((option, optionIndex) => (
                   <input
@@ -127,7 +127,7 @@ const CreateQuiz = () => {
                     onChange={(e) =>
                       handleOptionChange(index, optionIndex, e.target.value)
                     }
-                    className="mt-2 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+                    className="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                   />
                 ))}
                 <div className="flex items-center mt-2">
@@ -161,14 +161,14 @@ const CreateQuiz = () => {
             <button
               type="button"
               onClick={handleAddQuestion}
-              className="mt-4 p-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 first-line:flex float-end"
+              className="p-2 mt-4 font-bold text-white rounded-md bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 first-line:flex float-end"
             >
               Add Question
             </button>
           </div>
           <button
             type="submit"
-            className="mt-4 p-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 w-full"
+            className="w-full p-2 mt-4 font-bold text-white rounded-md bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
           >
             Submit
           </button>

@@ -49,7 +49,7 @@ const UploadNote = () => {
 
             return axios
               .post(
-                `http://localhost:8080/api/notes/upload/${courseId}`,
+                `http://localhost:8083/api/notes/upload/${courseId}`,
                 formData,
                 {
                   headers: {
@@ -88,8 +88,8 @@ const UploadNote = () => {
     <>
       <Sidebar />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <div className="w-full max-w-xl mx-auto p-6 bg-white text-black rounded-lg shadow-md">
-          <h1 className="text-3xl font-semibold mb-6 text-center">
+        <div className="w-full max-w-xl p-6 mx-auto text-black bg-white rounded-lg shadow-md">
+          <h1 className="mb-6 text-3xl font-semibold text-center">
             Upload Notes
           </h1>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -107,13 +107,13 @@ const UploadNote = () => {
                     id={`noteTitle${index}`}
                     value={entry.title}
                     onChange={(e) => handleTitleChange(e, index)}
-                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-slate-800"
+                    className="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-slate-800"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor={`noteFile${index}`}
-                    className="block text-sm mb-4 font-medium text-left mt-3"
+                    className="block mt-3 mb-4 text-sm font-medium text-left"
                   >
                     Upload Note File
                   </label>
@@ -126,12 +126,12 @@ const UploadNote = () => {
                   />
                   <label
                     htmlFor={`noteFile${index}`}
-                    className="w-full flex items-center justify-between bg-slate-800 text-white py-3 px-4 rounded cursor-pointer hover:bg-slate-800"
+                    className="flex items-center justify-between w-full px-4 py-3 text-white rounded cursor-pointer bg-slate-800 hover:bg-slate-800"
                   >
                     Choose File
                     <span>
                       {entry.fileName && (
-                        <p className="text-sm text-white m-2">
+                        <p className="m-2 text-sm text-white">
                           {entry.fileName}
                         </p>
                       )}
@@ -142,7 +142,7 @@ const UploadNote = () => {
                   <button
                     type="button"
                     onClick={() => handleRemoveEntry(index)}
-                    className="mt-3 bg-white hover:bg-slate-800 hover:text-white text-slate-800 font-semibold py-2 px-4 rounded cursor-pointer ml-1 border border-slate-800 transition-colors float-start"
+                    className="px-4 py-2 mt-3 ml-1 font-semibold transition-colors bg-white border rounded cursor-pointer hover:bg-slate-800 hover:text-white text-slate-800 border-slate-800 float-start"
                   >
                     Remove Note
                   </button>
@@ -152,15 +152,15 @@ const UploadNote = () => {
             <button
               type="button"
               onClick={handleAddEntry}
-              className="bg-slate-800 hover:bg-slate-800 text-white font-semibold py-2 px-4 rounded cursor-pointer float-end"
+              className="px-4 py-2 font-semibold text-white rounded cursor-pointer bg-slate-800 hover:bg-slate-800 float-end"
             >
               Add Note
             </button>
 
             {uploading && (
-              <div className="mt-4 flex items-center justify-center">
+              <div className="flex items-center justify-center mt-4">
                 <svg
-                  className="animate-spin h-5 w-5 mr-3"
+                  className="w-5 h-5 mr-3 animate-spin"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -184,7 +184,7 @@ const UploadNote = () => {
             )}
 
             {progress > 0 && (
-              <div className=" bg-slate-800 h-2 rounded-md overflow-hidden mt-8">
+              <div className="h-2 mt-8 overflow-hidden rounded-md  bg-slate-800">
                 <div
                   className="h-full bg-slate-800"
                   style={{ width: `${progress}%` }}
@@ -194,7 +194,7 @@ const UploadNote = () => {
 
             <button
               type="submit"
-              className="mt-4 p-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 w-full"
+              className="w-full p-2 mt-4 font-bold text-white rounded-md bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               disabled={uploading}
             >
               {uploading ? "Uploading..." : "Upload Notes"}

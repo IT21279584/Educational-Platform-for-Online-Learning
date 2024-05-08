@@ -23,6 +23,7 @@ public class UserController {
     public User register(@RequestBody User user){
         String username  = user.getUsername();
         String password = user.getPassword();
+        user.setRole(Role.LEARNER);
         Role role = user.getRole();
         Integer id = user.getUserId();
         String email = user.getEmail();
@@ -34,6 +35,23 @@ public class UserController {
 
         return userService.saveUser(newUser);
     }
+    @PostMapping("/instructor/register")
+    public User instructorRegistration(@RequestBody User user){
+        String username  = user.getUsername();
+        String password = user.getPassword();
+        user.setRole(Role.INSTRUCTOR);
+
+        Role role = user.getRole();
+        Integer id = user.getUserId();
+        String email = user.getEmail();
+        String userCode = user.getUserCode();
+
+        String encryptedPassword = passwordEncoder.encode(password);
+        User newUser = new User(id, email, username,  encryptedPassword, role, userCode);
+
+        return userService.saveUser(newUser);
+    }
+
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable Integer userId) {

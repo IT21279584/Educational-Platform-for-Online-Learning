@@ -7,9 +7,9 @@ import Sidebar from "../Pages/Sidebar";
 // Progress Bar Component
 const ProgressBar = ({ progress }) => {
   return (
-    <div className="h-4 w-full bg-slate-800 rounded overflow-hidden">
+    <div className="w-full h-4 overflow-hidden rounded bg-slate-800">
       <div
-        className="h-full bg-slate-500 transition-all"
+        className="h-full transition-all bg-slate-500"
         style={{ width: `${progress}%` }}
       ></div>
     </div>
@@ -62,7 +62,7 @@ const UploadVideo = () => {
         formData.append("file", file);
         formData.append("description", description);
         return axios.post(
-          `http://localhost:8080/api/videos/upload/${courseId}`,
+          `http://localhost:8083/api/videos/upload/${courseId}`,
           formData,
           {
             headers: {
@@ -92,15 +92,15 @@ const UploadVideo = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full">
+    <div className="w-full bg-gray-100">
       <Sidebar />
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="w-full max-w-xl">
           <form
             onSubmit={handleSubmit}
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md"
           >
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            <h2 className="mb-6 text-2xl font-semibold text-gray-800">
               Upload Videos
             </h2>
             {videos.map((video, index) => (
@@ -112,7 +112,7 @@ const UploadVideo = () => {
                   onChange={(e) => handleFileChange(e, index)}
                 />
                 <label
-                  className="w-full flex items-center justify-between bg-slate-800 text-white py-3 px-4 rounded cursor-pointer hover:bg-slate-800"
+                  className="flex items-center justify-between w-full px-4 py-3 text-white rounded cursor-pointer bg-slate-800 hover:bg-slate-800"
                   htmlFor={`file-${index}`}
                 >
                   <span>Choose File</span>
@@ -123,14 +123,14 @@ const UploadVideo = () => {
                 <textarea
                   value={video.description}
                   onChange={(e) => handleDescriptionChange(e, index)}
-                  className="mt-2 p-2 border border-gray-300 rounded-md w-full h-32 resize-none focus:outline-none focus:border-slate-800"
+                  className="w-full h-32 p-2 mt-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-slate-800"
                   placeholder="Description"
                 />
                 {index > 0 && (
                   <button
                     type="button"
                     onClick={() => handleRemoveVideoInput(index)}
-                    className="mt-3 bg-white hover:bg-slate-800 hover:text-white text-slate-800 font-semibold py-2 px-4 rounded cursor-pointer ml-2 border border-slate-800 transition-colors float-start"
+                    className="px-4 py-2 mt-3 ml-2 font-semibold transition-colors bg-white border rounded cursor-pointer hover:bg-slate-800 hover:text-white text-slate-800 border-slate-800 float-start"
                   >
                     Remove
                   </button>
@@ -141,20 +141,20 @@ const UploadVideo = () => {
               <button
                 type="button"
                 onClick={handleAddVideoInput}
-                className="bg-slate-800 hover:bg-slate-800 text-white font-semibold py-2 px-4 rounded cursor-pointer float-end"
+                className="px-4 py-2 font-semibold text-white rounded cursor-pointer bg-slate-800 hover:bg-slate-800 float-end"
               >
                 Add Video
               </button>
             </div>
             {errorMessage && (
-              <p className="text-red-500 text-sm mt-4">{errorMessage}</p>
+              <p className="mt-4 text-sm text-red-500">{errorMessage}</p>
             )}
             <div className="mt-6">
               {uploading && (
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="animate-spin h-5 w-5 mr-3 inline-block"
+                    className="inline-block w-5 h-5 mr-3 animate-spin"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -171,7 +171,7 @@ const UploadVideo = () => {
               )}
               {!uploading && (
                 <button
-                  className="w-full bg-slate-800 text-white font-semibold py-2 px-4 rounded cursor-pointer hover:bg-white hover:text-slate-800 hover:border-slate-800 border border-transparent transition-colors duration-300"
+                  className="w-full px-4 py-2 font-semibold text-white transition-colors duration-300 border border-transparent rounded cursor-pointer bg-slate-800 hover:bg-white hover:text-slate-800 hover:border-slate-800"
                   type="submit"
                   disabled={uploading}
                 >

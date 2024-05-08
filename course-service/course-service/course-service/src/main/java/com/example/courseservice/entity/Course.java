@@ -29,6 +29,20 @@ public class Course {
     @Column(name = "courseCode")
     private String courseCode;
 
+    @Column(name = "courseType")
+    @Enumerated(value = EnumType.STRING)
+    private CourseType courseType;
+
+    @Column(name = "price")
+    private String price;
+
+    @Column(name = "duration")
+    private double duration;
+
+    @Column(name = "category")
+    @Enumerated(value = EnumType.STRING)
+    private CourseCategory category;
+
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Quiz> quizzes;

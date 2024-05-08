@@ -12,6 +12,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -71,5 +72,10 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public List<Video> getAllVideos() {
         return videoRepository.findAll();
+    }
+
+    @Override
+    public Optional<Video> getVideo(Integer videoId) {
+        return videoRepository.findById(videoId);
     }
 }
