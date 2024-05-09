@@ -40,6 +40,7 @@ public class EnrollmentService {
             Enrollment enrollment = new Enrollment();
             enrollment.setUserId(enrollmentId.getUserId());
             enrollment.setCourseId(enrollmentId.getCourseId());
+            enrollment.setCourseTitle(courseDTO.getTitle()); // Set course title
 
             // Save the enrollment
             return enrollmentRepository.save(enrollment);
@@ -72,4 +73,3 @@ public class EnrollmentService {
                 .collect(Collectors.toList());
     }
 }
-
