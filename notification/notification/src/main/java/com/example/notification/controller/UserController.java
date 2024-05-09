@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/enroll")
+@RequestMapping("/api/notification")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/register")
+    @PutMapping("/send")
     public ResponseEntity<ResponseDto> registerUser(@RequestBody RequestDto requestDto){
         userService.registerUser(requestDto);
         return new ResponseEntity<>(ResponseDto.builder()

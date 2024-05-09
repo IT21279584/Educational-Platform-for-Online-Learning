@@ -1,4 +1,4 @@
-package com.example.learnerservice.config;
+package com.example.notification.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
