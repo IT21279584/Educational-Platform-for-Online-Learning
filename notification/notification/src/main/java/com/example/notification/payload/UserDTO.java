@@ -1,4 +1,4 @@
-package com.example.learnerservice.dto;
+package com.example.notification.payload;
 
 import lombok.Data;
 
