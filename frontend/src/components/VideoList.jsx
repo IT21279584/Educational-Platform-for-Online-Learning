@@ -174,7 +174,7 @@ const VideoList = () => {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {Object.entries(filteredVideos).map(([courseId, videos]) => (
               <div key={courseId}>
-                {videos.length > 0 && (
+                {videos.length > 0 && videos[0].course.isApproved === 1 && (
                   <div className="relative p-4 overflow-hidden border border-gray-300 rounded-lg shadow-lg">
                     <Link to={`/api/video-learner/${videos[0].videoId}`}>
                       <video
@@ -197,6 +197,7 @@ const VideoList = () => {
                       <p className="text-xs text-left text-gray-700 truncate">
                         {videos[0].course.courseType.toLowerCase()}
                       </p>
+
                       <div className="flex items-center mt-2">
                         <div className="flex items-center mr-2">
                           {Array.from({ length: 5 }).map((_, i) => (
