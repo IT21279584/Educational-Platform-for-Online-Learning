@@ -24,6 +24,7 @@ import CreateCourse from "./components/CreateCourse.jsx";
 import UserDetails from "./components/UserDetails.jsx";
 import InstructorAllVideos from "./components/InstructorAllVideos.jsx";
 import EditCourse from "./components/EditCourse.jsx";
+import AdminCourseList from "./components/AdminCourseList.jsx";
 
 function App() {
   return (
@@ -58,10 +59,11 @@ function App() {
         <Route path="/api/course/quiz/all" element={<QuizCourseList />} />
         <Route path="/api/course/add" element={<CreateCourse />} />
         <Route path="/api/course/edit/:courseId" element={<EditCourse />} />
-  
+
         <Route path="/api/video-learner/:videoId" element={<VideoLearner />} />
 
         <Route path="/api/user" element={<UserDetails />} />
+        <Route path="/api/admin/courses" element={<AdminCourseList />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
