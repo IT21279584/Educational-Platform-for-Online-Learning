@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EnrollmentService {
 
@@ -61,6 +64,12 @@ public class EnrollmentService {
                 .orElseThrow(() -> new RuntimeException("Enrollment not found with ID: " + enrollId));
 
         enrollmentRepository.delete(enrollment);
+    }
+
+    public List<Enrollment> getEnrolledCoursesByUserId(Integer userId) {
+        return enrollmentRepository.findAll().stream()
+                .filter(enrollment -> enrollment.getUserId().equals(userId))
+                .collect(Collectors.toList());
     }
 }
 
