@@ -15,10 +15,29 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User saveUser(User user) {
+    public User saveUser(User user) throws Exception {
+        // Check if the email is already in use
+        try{
+            User existingUserWithEmail = userRepository.findByEmail(user.getEmail());
+            if (existingUserWithEmail != null) {
+                // Handle duplicate email
+                throw new Exception("Email is already in use");
+            }
 
-        return userRepository.save(user);
+            // Check if the username is already in use
+            User existingUserWithUsername = userRepository.findByUsername(user.getUsername());
+            if (existingUserWithUsername != null) {
+                // Handle duplicate username
+                throw new Exception("Username is already in use");
+            }
+            // Save the user if email and username are not already in use
+            return userRepository.save(user);
+        }catch(Exception e){
+            e.printStackTrace();
+            throw e;
+        }
     }
+
 
     @Override
     public User getUserById(Integer userId) {
