@@ -65,9 +65,9 @@ const InstructorAllVideos = () => {
                     </video>
                   </div>
                   <div className="p-4">
-                    <h3 className="mb-2 text-lg font-semibold text-gray-800">
+                    {/* <h3 className="mb-2 text-lg font-semibold text-gray-800">
                       Video ID: {video.videoId}
-                    </h3>
+                    </h3> */}
                     <p className="text-sm text-gray-700 truncate">
                       Description: {video.description}
                     </p>
