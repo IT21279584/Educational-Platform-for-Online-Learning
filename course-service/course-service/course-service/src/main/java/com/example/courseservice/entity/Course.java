@@ -43,6 +43,9 @@ public class Course {
     @Enumerated(value = EnumType.STRING)
     private CourseCategory category;
 
+    @Column(name = "isApproved")
+    private int isApproved;
+
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Quiz> quizzes;
