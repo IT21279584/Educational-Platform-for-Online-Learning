@@ -69,7 +69,7 @@ const UserDetails = () => {
               </label>
               {enrolledCourses.map((course) => (
                 <p key={course.id} className="mt-1 text-sm text-gray-900">
-                  {course.courseId}{" "}
+                  {course.courseTitle}{" "}
                 </p>
               ))}
             </div>
