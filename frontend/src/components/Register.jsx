@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
 
 export default function Register() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -52,18 +53,32 @@ export default function Register() {
         "http://localhost:8082/api/users/register",
         formData
       );
+
+      const notificationData = {
+        userId: response.data.userId, // Adjust as per your response structure
+        courseId: 1, // Adjust as per your response structure
+        email: response.data.email,
+      };
+      console.log(notificationData);
+            await axios.put(
+              "http://localhost:8085/api/notification/send",
+              notificationData
+            );
+
       console.log(response.data);
+  
       Swal.fire({
         icon: "success",
         title: "Registration Successful",
         text: "You have successfully registered!",
       });
+      navigate("/api/login")
     } catch (error) {
       console.error("Registration failed:", error);
       Swal.fire({
         icon: "error",
         title: "Registration Failed",
-        text: "An error occurred while registering. Please try again later.",
+        text: error.response.data,
       });
     }
   };
