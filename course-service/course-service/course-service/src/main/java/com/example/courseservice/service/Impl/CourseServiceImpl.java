@@ -50,6 +50,7 @@ public class CourseServiceImpl implements CourseService {
 
         // Set the user ID in the course entity
         course.setUserId(userDTO.getUserId());
+        course.setIsApproved(0);
 
         // Save the course
         return courseRepository.save(course);
@@ -64,4 +65,38 @@ public class CourseServiceImpl implements CourseService {
         String userUrl = "http://localhost:8082/api/users/" + userId; // Assuming this is your user service endpoint
         return restTemplate.getForObject(userUrl, UserDTO.class);
     }
+    @Override
+    public Course updateCourse(Integer courseId, Course updatedCourse) {
+        Course existingCourse = courseRepository.findById(courseId)
+                .orElseThrow(() -> new RuntimeException("Course not found with id: " + courseId));
+
+        // Update the existing course with the new data
+        existingCourse.setTitle(updatedCourse.getTitle());
+        existingCourse.setDescription(updatedCourse.getDescription());
+        existingCourse.setCategory(updatedCourse.getCategory());
+        existingCourse.setCourseCode(updatedCourse.getCourseCode());
+        existingCourse.setCourseType(updatedCourse.getCourseType());
+        existingCourse.setDuration(updatedCourse.getDuration());
+        existingCourse.setPrice(updatedCourse.getPrice());
+
+        // Save and return the updated course
+        return courseRepository.save(existingCourse);
+    }
+
+    @Override
+    public Course approveCourse(Integer courseId, Course updatedCourse) {
+        Course existingCourse = courseRepository.findById(courseId)
+                .orElseThrow(() -> new RuntimeException("Course not found with id: " + courseId));
+        existingCourse.setTitle(updatedCourse.getTitle());
+        existingCourse.setDescription(updatedCourse.getDescription());
+        existingCourse.setCategory(updatedCourse.getCategory());
+        existingCourse.setCourseCode(updatedCourse.getCourseCode());
+        existingCourse.setCourseType(updatedCourse.getCourseType());
+        existingCourse.setDuration(updatedCourse.getDuration());
+        existingCourse.setPrice(updatedCourse.getPrice());
+        // Update the existing course with the new data
+        existingCourse.setIsApproved(updatedCourse.getIsApproved());
+        return courseRepository.save(existingCourse); // Save the existing course, not updatedCourse
+    }
+
 }

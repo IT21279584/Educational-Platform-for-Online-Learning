@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
 
 export default function InstructorRegister() {
+    const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -57,6 +58,7 @@ export default function InstructorRegister() {
         title: "Registration Successful",
         text: "You have successfully registered!",
       });
+    navigate("/api/login")
     } catch (error) {
       console.error("Registration failed:", error);
       Swal.fire({

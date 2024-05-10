@@ -32,6 +32,19 @@ const CourseList = () => {
     }
   }, []);
 
+  const handleDeleteCourse = async (courseId) => {
+    try {
+      await axios.delete(`http://localhost:8083/api/course/delete/${courseId}`);
+      // Remove the deleted course from the state
+      setCourses((prevCourses) =>
+        prevCourses.filter((course) => course.courseId !== courseId)
+      );
+    } catch (error) {
+      console.error("Error deleting course:", error);
+      // Handle error
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -83,6 +96,12 @@ const CourseList = () => {
                 >
                   Price
                 </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase"
+                >
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -94,7 +113,7 @@ const CourseList = () => {
                 </tr>
               ) : (
                 courses.map((course) => (
-                  <tr key={course.course_id}>
+                  <tr key={course.courseId}>
                     <td className="px-6 py-4 text-left whitespace-nowrap">
                       {course.title}
                     </td>
@@ -113,8 +132,22 @@ const CourseList = () => {
                     <td className="px-6 py-4 text-left whitespace-nowrap ">
                       {course.duration}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowraptext-left ">
+                    <td className="px-6 py-4 text-left whitespace-nowrap ">
                       {course.price}
+                    </td>
+                    <td className="px-6 py-4 text-sm font-medium whitespace-nowrap float-start">
+                      <Link
+                        to={`/api/course/edit/${course.courseId}`}
+                        className="mr-4 font-bold text-indigo-600 hover:text-indigo-900"
+                      >
+                        EDIT COURSE
+                      </Link>
+                      <button
+                        className="font-bold text-red-600 hover:text-indigo-900"
+                        onClick={() => handleDeleteCourse(course.courseId)}
+                      >
+                        DELETE COURSE
+                      </button>
                     </td>
                   </tr>
                 ))

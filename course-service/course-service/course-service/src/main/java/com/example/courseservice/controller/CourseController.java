@@ -44,4 +44,24 @@ public class CourseController {
     public List<Course> getVideosByUserId(@PathVariable Integer userId){
         return courseService.getVideosByUserId(userId);
     }
+
+    @DeleteMapping("/delete/{courseId}")
+    public void deleteCourse(@PathVariable Integer courseId){
+        courseService.deleteCourse(courseId);
+    }
+
+    @PutMapping("/{courseId}")
+    public Course updateCourse(@PathVariable Integer courseId, @RequestBody Course course){
+        return courseService.updateCourse(courseId, course);
+    }
+
+    @GetMapping
+    public List<Course> getCourses(){
+        return courseService.getCourses();
+    }
+
+    @PutMapping("/approve/{courseId}")
+    public Course approveCourse(@PathVariable Integer courseId, @RequestBody Course course){
+        return courseService.updateCourse(courseId, course);
+    }
 }

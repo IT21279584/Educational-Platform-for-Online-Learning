@@ -77,7 +77,7 @@ const VideoCourseList = () => {
                 </tr>
               ) : (
                 courses.map((course) => (
-                  <tr key={course.course_id}>
+                  <tr key={course.courseId}>
                     <td className="px-6 py-4 text-left whitespace-nowrap">
                       {course.title}
                     </td>
@@ -97,7 +97,7 @@ const VideoCourseList = () => {
                         ADD VIDEO
                       </Link>
                       <Link
-                        to={``}
+                        to={`/api/instructor/videos/${course.courseId}`}
                         className="mr-4 font-bold text-red-600 hover:text-indigo-900"
                       >
                         VIEW VIDEOS
