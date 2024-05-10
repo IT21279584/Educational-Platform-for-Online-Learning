@@ -10,5 +10,8 @@ public interface CourseService {
     Optional<Course> getCourse(Integer courseId);
     List<Course> getCourses();
     void deleteCourse(Integer courseId);
-
+    Course createCourse(Course course);
+    List<Course> getVideosByUserId(Integer userId);
+    Course updateCourse(Integer courseId, Course updatedCourse);
+    Course approveCourse(Integer courseId, Course updatedCourse);
 }
