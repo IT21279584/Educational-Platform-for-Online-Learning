@@ -1,5 +1,5 @@
-import React from "react";
-import "./Welcome.css";
+
+import "../booksection-slider/Welcome.css";
 import { Container, Row, Col } from "reactstrap";
 import Slider from "react-slick";
 
@@ -40,8 +40,8 @@ const Wellcome = () => {
                   </div>
 
                   <div>
-                    <div className="single__testimonial3 text-center">
-                      <h3 className="mb-3 fw-bold p-4" style={{ color: 'black' }}>
+                    <div className="text-center single__testimonial3">
+                      <h3 className="p-4 mb-3 fw-bold" style={{ color: 'black' }}>
                       Books open windows to the world and have the power to transform our perspective.
                       </h3>
                       <h2>Learners Book Store.</h2>
@@ -51,7 +51,7 @@ const Wellcome = () => {
 
                   <div>
                     <div className="single__testimonial4">
-                      <h6 className="mb-3 fw-bold pt-4">
+                      <h6 className="pt-4 mb-3 fw-bold">
                       "Books are the plane, and the train, and the road. They are the destination, and the journey. They are home." — Anna Quindlen
                       </h6>
                       <p>

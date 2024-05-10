@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Container } from "reactstrap";
 import "./header.css";
 
@@ -36,12 +36,12 @@ const Header = () => {
       <Container>
         <div className="navigation d-flex align-items-center justify-content-between">
           <div className="logo">
-            <h2 className=" d-flex align-items-center gap-1">
-              <i class="ri-pantone-line"></i> Learners.
+            <h2 className="gap-1 d-flex align-items-center">
+              <i className="ri-pantone-line"></i> Learners.
             </h2>
           </div>
 
-          <div className="nav d-flex align-items-center gap-5">
+          <div className="gap-5 nav d-flex align-items-center">
             <div className="nav__menu" ref={menuRef} onClick={menuToggle}>
               <ul className="nav__list">
                 {navLinks.map((item, index) => (
@@ -53,15 +53,15 @@ const Header = () => {
             </div>
 
             <div className="nav__right">
-              <p className="mb-0 d-flex align-items-center gap-2">
-                <i class="ri-phone-line"></i> 0717159789
+              <p className="gap-2 mb-0 d-flex align-items-center">
+                <i className="ri-phone-line"></i> 0717159789
               </p>
             </div>
           </div>
 
           <div className="mobile__menu">
             <span>
-              <i class="ri-menu-line" onClick={menuToggle}></i>
+              <i className="ri-menu-line" onClick={menuToggle}></i>
             </span>
           </div>
         </div>

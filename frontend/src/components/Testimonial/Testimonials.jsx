@@ -1,9 +1,9 @@
-import React from "react";
-import "./testimonial.css";
+
+import "../Testimonial/testimonial.css";
 import { Container, Row, Col } from "reactstrap";
 import Slider from "react-slick";
 
-import img from "../../assests/images/testimonial01.jpg";
+import img from "../../assets/images/testimonial01.jpg";
 
 const Testimonials = () => {
   const settings = {
@@ -40,7 +40,7 @@ const Testimonials = () => {
                       and I couldn't be happier with my decision to learn here!"
                       </p>
 
-                      <div className="student__info mt-4">
+                      <div className="mt-4 student__info">
                         <h6 className="fw-bold">Thushara Sampath</h6>
                         <p>Colombo 07, Sri lanka</p>
                       </div>
@@ -58,7 +58,7 @@ const Testimonials = () => {
                       clear explanations and practical examples that helped me grasp complex concepts easily.
                       </p>
 
-                      <div className="student__info mt-4">
+                      <div className="mt-4 student__info">
                         <h6 className="fw-bold">Savindu Rathnayaka</h6>
                         <p>Nuwara Eliya, Sri lanka</p>
                       </div>
@@ -76,7 +76,7 @@ const Testimonials = () => {
                       instructors made learning both engaging and rewarding.
                       </p>
 
-                      <div className="student__info mt-4">
+                      <div className="mt-4 student__info">
                         <h6 className="fw-bold">Pasindu Sandeep</h6>
                         <p>Kandy, Sri Lanka</p>
                       </div>

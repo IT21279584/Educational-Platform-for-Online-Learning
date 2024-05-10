@@ -1,6 +1,6 @@
-import {React, useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 import { Container, Row, Col, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import "./books.css";
+import "../Book-section/books.css";
 import CourseCard from "./BookCard";
 
 const Books = () => {
@@ -9,7 +9,7 @@ const Books = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await fetch("http://localhost:8080/books/all-books"); // Assuming the base URL is the same as the API base URL
+                const response = await fetch("http://localhost:8086/books/all-books"); // Assuming the base URL is the same as the API base URL
                 const data = await response.json();
                 setData(data);
 

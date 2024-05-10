@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 
-import chooseImg from "../../assests/images/why-choose-us.png";
-import "./choose-us.css";
+import chooseImg from "../../assets/images/why-choose-us.png";
+import "../Choose-us/choose-us.css";
 
 import ReactPlayer from "react-player";
 
@@ -44,7 +44,7 @@ const ChooseUs = () => {
               {!showVideo && (
                 <span className="play__icon">
                   <i
-                    class="ri-play-circle-line"
+                    className="ri-play-circle-line"
                     onClick={() => setShowVideo(!showVideo)}
                   ></i>
                 </span>

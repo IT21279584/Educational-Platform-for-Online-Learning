@@ -1,4 +1,4 @@
-import React from "react";
+
 import Books from "../components/Book-section/Books";
 import Header from "../components/Header/Header";
 import SliderBar from "../components/booksection-slider/Wellcome";

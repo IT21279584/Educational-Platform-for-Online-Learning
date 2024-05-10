@@ -25,6 +25,12 @@ import UserDetails from "./components/UserDetails.jsx";
 import InstructorAllVideos from "./components/InstructorAllVideos.jsx";
 import EditCourse from "./components/EditCourse.jsx";
 import AdminCourseList from "./components/AdminCourseList.jsx";
+import Home from "./Pages/Home.jsx";
+import Books from "./components/Book-section/Books.jsx";
+import Course from "./Pages/Course.jsx";
+import SharePage from "./Pages/SharePage.jsx";
+
+
 
 function App() {
   return (
@@ -66,6 +72,11 @@ function App() {
         <Route path="/api/admin/courses" element={<AdminCourseList />} />
 
         <Route path="*" element={<NotFound />} />
+
+        <Route path="/library" element={<Home />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/course/:courseId" element={<Course />} />
+        <Route path="/share/:userName" element={<SharePage />} />
       </Routes>
     </Router>
   );

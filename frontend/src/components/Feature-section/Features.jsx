@@ -1,6 +1,6 @@
-import React from "react";
+
 import { Container, Row, Col } from "reactstrap";
-import "./features.css";
+import "../Feature-section/features.css";
 
 const FeatureData = [
   {
@@ -29,9 +29,9 @@ const Features = () => {
         <Row>
           {FeatureData.map((item, index) => (
             <Col lg="4" md="6" key={index}>
-              <div className="single__feature text-center px-4">
+              <div className="px-4 text-center single__feature">
                 <h2 className="mb-3">
-                  <i class={item.icon}></i>
+                  <i className={item.icon}></i>
                 </h2>
                 <h6>{item.title}</h6>
                 <p>{item.desc}</p>
