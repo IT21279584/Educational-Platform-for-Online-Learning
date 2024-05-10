@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom"; // Import Link component
 
 const UserDetails = () => {
   const [user, setUser] = useState(null);
@@ -67,11 +68,29 @@ const UserDetails = () => {
               <label className="block text-sm font-medium text-gray-700">
                 Enrolled Courses
               </label>
-              {enrolledCourses.map((course) => (
-                <p key={course.id} className="mt-1 text-sm text-gray-900">
-                  {course.courseTitle}{" "}
-                </p>
-              ))}
+              <div className="grid grid-cols-1 gap-4">
+                {enrolledCourses.map((course) => (
+                  <div
+                    key={course.id}
+                    className="bg-white rounded-md shadow-md"
+                  >
+                    {/* Wrap course title in Link component */}
+                    <Link
+                      to={`/api/course/single/${course.courseId}`}
+                      className="cursor-pointer"
+                    >
+                      <div className="p-4">
+                        <h2 className="text-lg font-semibold text-gray-800">
+                          {course.courseTitle}
+                        </h2>
+                        <p className="mt-2 text-sm text-gray-600">
+                          {course.description}
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ) : (

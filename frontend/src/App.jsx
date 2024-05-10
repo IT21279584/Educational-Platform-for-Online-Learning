@@ -22,9 +22,8 @@ import NoteCourseList from "./components/NoteCourseList.jsx";
 import QuizCourseList from "./components/QuizCourseList.jsx";
 import CreateCourse from "./components/CreateCourse.jsx";
 import UserDetails from "./components/UserDetails.jsx";
-import InstructorAllVideos from "./components/InstructorAllVideos.jsx";
-import EditCourse from "./components/EditCourse.jsx";
-import AdminCourseList from "./components/AdminCourseList.jsx";
+import SingleCourse from "./components/SingleCourse.jsx";
+// import SingleCoursePage from "./components/SingleCourse.jsx";
 
 function App() {
   return (
@@ -32,10 +31,6 @@ function App() {
       <Routes>
         <Route path="/api/upload-video/:courseId" element={<UploadVideo />} />
         <Route path="/api/videos/:courseId" element={<AllVideos />} />
-        <Route
-          path="/api/instructor/videos/:courseId"
-          element={<InstructorAllVideos />}
-        />
         <Route path="/api/quiz/:quizId/:courseId" element={<Quiz />} />
         <Route path="/api/quiz/:courseId" element={<CreateQuiz />} />
         <Route path="/api/note/:courseId" element={<UploadNote />} />
@@ -58,12 +53,10 @@ function App() {
         <Route path="/api/course/note/all" element={<NoteCourseList />} />
         <Route path="/api/course/quiz/all" element={<QuizCourseList />} />
         <Route path="/api/course/add" element={<CreateCourse />} />
-        <Route path="/api/course/edit/:courseId" element={<EditCourse />} />
-
+        <Route path="/api/course/single/:courseId" element={<SingleCourse />} />
         <Route path="/api/video-learner/:videoId" element={<VideoLearner />} />
 
         <Route path="/api/user" element={<UserDetails />} />
-        <Route path="/api/admin/courses" element={<AdminCourseList />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
