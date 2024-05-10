@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.example.libraryservice.repository;
 
-import com.example.demo.entity.VideoEntity;
+import com.example.libraryservice.entity.VideoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

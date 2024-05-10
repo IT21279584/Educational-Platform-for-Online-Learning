@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.example.libraryservice.service;
 
-import com.example.demo.dto.BookDTO;
-import com.example.demo.entity.BookEntity;
-import com.example.demo.repository.BookRepository;
+import com.example.libraryservice.dto.BookDTO;
+import com.example.libraryservice.entity.BookEntity;
+import com.example.libraryservice.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

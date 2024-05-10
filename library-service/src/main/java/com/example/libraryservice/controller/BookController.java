@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.libraryservice.controller;
 
-import com.example.demo.dto.BookDTO;
-import com.example.demo.entity.BookEntity;
-import com.example.demo.service.BookService;
+import com.example.libraryservice.dto.BookDTO;
+import com.example.libraryservice.entity.BookEntity;
+import com.example.libraryservice.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
