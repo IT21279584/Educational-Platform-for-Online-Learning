@@ -95,7 +95,13 @@ public class CourseServiceImpl implements CourseService {
         existingCourse.setDuration(updatedCourse.getDuration());
         existingCourse.setPrice(updatedCourse.getPrice());
         // Update the existing course with the new data
-        existingCourse.setIsApproved(updatedCourse.getIsApproved());
+
+        if(existingCourse.getIsApproved() == 1){
+            existingCourse.setIsApproved(0);
+        }else{
+            existingCourse.setIsApproved(1);
+        }
+
         return courseRepository.save(existingCourse); // Save the existing course, not updatedCourse
     }
 
