@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Header from "../components/Header/Header";
@@ -74,13 +74,13 @@ function SharePage() {
 
         try {
             const courseResponse = await axios.post(
-                'http://localhost:8080/courses/saveCourse',
-                courseFormData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                }
+              "http://localhost:8086/courses/saveCourse",
+              courseFormData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
             );
 
             if (courseResponse.status === 201) {
@@ -91,13 +91,13 @@ function SharePage() {
                     videoFormData.append('video', video.video);
 
                     const videoResponse = await axios.post(
-                        'http://localhost:8080/courses/saveVideo',
-                        videoFormData,
-                        {
-                            headers: {
-                                'Content-Type': 'multipart/form-data',
-                            },
-                        }
+                      "http://localhost:8086/courses/saveVideo",
+                      videoFormData,
+                      {
+                        headers: {
+                          "Content-Type": "multipart/form-data",
+                        },
+                      }
                     );
 
                     console.log(videoResponse.data);
@@ -145,11 +145,15 @@ function SharePage() {
         formData.append('file', bookFile);
 
         try {
-            const response = await axios.post('http://localhost:8080/books/upload-book', formData, {
+            const response = await axios.post(
+              "http://localhost:8086/books/upload-book",
+              formData,
+              {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                  "Content-Type": "multipart/form-data",
                 },
-            });
+              }
+            );
             setResponseMessage(response.data);
             alert('Book upload success!');
         } catch (error) {
@@ -162,15 +166,15 @@ function SharePage() {
         <div>
             <Header/>
             <div className="container my-5">
-                <h2 className="text-center mb-4">Use this page to share a your Courses and Books</h2>
+                <h2 className="mb-4 text-center">Use this page to share a your Courses and Books</h2>
                 <hr/>
                 <div className="row">
                     {/* Left column for sharing a course */}
                     <div className="col-md-6">
                         <div className="border-end pe-4">
-                            <h3 className="text-center mb-4">Share a New Course</h3>
+                            <h3 className="mb-4 text-center">Share a New Course</h3>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="courseName">Course Name</label>
                                 <input
                                     type="text"
@@ -182,7 +186,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="description">Description</label>
                                 <textarea
                                     id="description"
@@ -193,7 +197,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="type">Type</label>
                                 <select
                                     id="type"
@@ -211,7 +215,7 @@ function SharePage() {
                                 </select>
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="profilePicture">Profile Picture</label>
                                 <input
                                     type="file"
@@ -222,7 +226,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="image">Course Image</label>
                                 <input
                                     type="file"
@@ -233,7 +237,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="courseDuration">Course Duration</label>
                                 <input
                                     type="text"
@@ -245,7 +249,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="minimumAnnualSalary">Minimum Annual Salary</label>
                                 <input
                                     type="text"
@@ -257,7 +261,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="maximumAnnualSalary">Jobs Availability</label>
                                 <input
                                     type="text"
@@ -269,7 +273,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="yourPreferences">Your Preferences</label>
                                 <input
                                     type="text"
@@ -287,7 +291,7 @@ function SharePage() {
 
                             {videos.map((video, index) => (
                                 <div key={index} className="mb-3">
-                                    <div className="form-group mb-3">
+                                    <div className="mb-3 form-group">
                                         <label htmlFor={`videoLecture${index}`}>Lecture {index + 1}</label>
                                         <input
                                             type="text"
@@ -300,7 +304,7 @@ function SharePage() {
                                         />
                                     </div>
                                     
-                                    <div className="form-group mb-3">
+                                    <div className="mb-3 form-group">
                                         <label htmlFor={`videoFile${index}`}>Video File</label>
                                         <input
                                             type="file"
@@ -321,10 +325,10 @@ function SharePage() {
 
                     {/* Right column for sharing a book */}
                     <div className="col-md-6">
-                        <h3 className="text-center mb-4">Share a New Book</h3>
+                        <h3 className="mb-4 text-center">Share a New Book</h3>
 
                         <form onSubmit={handleSubmit}>
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="author">Author:</label>
                                 <input
                                     type="text"
@@ -337,7 +341,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="bookName">Book Name:</label>
                                 <input
                                     type="text"
@@ -350,7 +354,7 @@ function SharePage() {
                                 />
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="type">Type:</label>
                                 <select
                                     id="type"
@@ -371,10 +375,10 @@ function SharePage() {
                                 </select>
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="description">Description:</label>
                                 <textarea
-                                    className="form-control mb-3"
+                                    className="mb-3 form-control"
                                     id="description"
                                     placeholder="Enter Name of the description"
                                     value={bookDescription}
@@ -383,26 +387,26 @@ function SharePage() {
                                 ></textarea>
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="image">Image:</label>
                                 <input
                                     type="file"
-                                    className="form-control-file mb-3"
+                                    className="mb-3 form-control-file"
                                     id="image"
                                     accept="image/*"
                                     onChange={handleBookImageChange}
                                     required
                                 />
                                 {bookImagePreview && (
-                                    <img src={bookImagePreview} alt="Image Preview" className="img-fluid mt-3" style={{ maxWidth: '200px' }} />
+                                    <img src={bookImagePreview} alt="Image Preview" className="mt-3 img-fluid" style={{ maxWidth: '200px' }} />
                                 )}
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3 form-group">
                                 <label htmlFor="bookFile">Book File:</label>
                                 <input
                                     type="file"
-                                    className="form-control-file mb-3"
+                                    className="mb-3 form-control-file"
                                     id="bookFile"
                                     accept="application/pdf"
                                     onChange={(e) => setBookFile(e.target.files[0])}

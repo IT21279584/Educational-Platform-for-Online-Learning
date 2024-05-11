@@ -1,9 +1,9 @@
-import React from "react";
+
 import "./about.css";
 import { Container, Row, Col } from "reactstrap";
-import aboutImg from "../../assests/images/about-us.png";
+import aboutImg from "../../assets/images/about-us.png";
 import CountUp from "react-countup";
-import "./about.css";
+import "../About-us/about.css";
 
 const AboutUs = () => {
   return (
@@ -27,7 +27,7 @@ const AboutUs = () => {
               </p>
 
               <div className="about__counter">
-                <div className=" d-flex gap-5 align-items-center">
+                <div className="gap-5 d-flex align-items-center">
                   <div className="single__counter">
                     <span className="counter">
                       <CountUp start={0} end={25} duration={2} suffix="K" />
@@ -45,7 +45,7 @@ const AboutUs = () => {
                   </div>
                 </div>
 
-                <div className=" d-flex gap-5 align-items-center">
+                <div className="gap-5 d-flex align-items-center">
                   <div className="single__counter">
                     <span className="counter">
                       <CountUp start={0} end={95} duration={2} suffix="M" />

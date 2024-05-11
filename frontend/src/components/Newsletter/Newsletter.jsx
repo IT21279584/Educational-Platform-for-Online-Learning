@@ -1,5 +1,5 @@
-import React from "react";
-import "./newsletter.css";
+
+import "../Newsletter/newsletter.css";
 import { Container, Row, Col } from "reactstrap";
 
 const Newsletter = () => {

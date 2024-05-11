@@ -1,11 +1,11 @@
-package com.example.demo.controller;
+package com.example.libraryservice.controller;
 
-import com.example.demo.dto.CourseContentDTO;
-import com.example.demo.dto.CourseDTO;
-import com.example.demo.entity.CourseEntity;
-import com.example.demo.entity.VideoEntity;
-import com.example.demo.service.VideoService;
-import com.example.demo.service.CourseService;
+import com.example.libraryservice.dto.CourseContentDTO;
+import com.example.libraryservice.dto.CourseDTO;
+import com.example.libraryservice.entity.CourseEntity;
+import com.example.libraryservice.entity.VideoEntity;
+import com.example.libraryservice.service.VideoService;
+import com.example.libraryservice.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

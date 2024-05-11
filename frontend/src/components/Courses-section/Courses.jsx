@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 import CourseCard from "./CourseCard"; // Ensure this path is correct
@@ -16,7 +16,9 @@ const Courses = () => {
         const fetchCourses = async () => {
             try {
                 // Replace the URL with your actual API endpoint for fetching courses
-                const response = await axios.get("http://localhost:8080/courses/allCourses");
+                const response = await axios.get(
+                  "http://localhost:8086/courses/allCourses"
+                );
                 setCoursesData(response.data);
                 console.log(response.data);
             } catch (error) {

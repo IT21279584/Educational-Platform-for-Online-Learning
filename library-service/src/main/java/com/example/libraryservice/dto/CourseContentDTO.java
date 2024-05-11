@@ -1,22 +1,23 @@
-package com.example.demo.dto;
+package com.example.libraryservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseDTO {
-    private int id;
+public class CourseContentDTO {
+    private String description;
     private String courseName;
     private String tutorName;
-    private String type;
     private String courseDuration;
     private String profilePicture;
     private String minimumAnnualSalary;
     private String jobsAvailable;
     private String yourPreferences;
     private String image;
-
+    private List<VideoDTO> videoList;
 }

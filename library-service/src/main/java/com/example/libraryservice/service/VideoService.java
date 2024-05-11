@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.libraryservice.service;
 
-import com.example.demo.entity.VideoEntity;
-import com.example.demo.repository.VideoRepository;
+import com.example.libraryservice.entity.VideoEntity;
+import com.example.libraryservice.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

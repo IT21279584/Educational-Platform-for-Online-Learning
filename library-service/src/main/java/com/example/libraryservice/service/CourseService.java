@@ -1,11 +1,11 @@
-package com.example.demo.service;
+package com.example.libraryservice.service;
 
-import com.example.demo.dto.CourseContentDTO;
-import com.example.demo.dto.CourseDTO;
-import com.example.demo.dto.VideoDTO;
-import com.example.demo.entity.CourseEntity;
-import com.example.demo.entity.VideoEntity;
-import com.example.demo.repository.CourseRepository;
+import com.example.libraryservice.dto.CourseContentDTO;
+import com.example.libraryservice.dto.CourseDTO;
+import com.example.libraryservice.dto.VideoDTO;
+import com.example.libraryservice.entity.CourseEntity;
+import com.example.libraryservice.entity.VideoEntity;
+import com.example.libraryservice.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

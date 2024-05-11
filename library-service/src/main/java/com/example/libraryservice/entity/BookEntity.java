@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.libraryservice.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,21 +11,20 @@ import java.sql.Blob;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="courses")
-public class CourseEntity {
+@Table(name="books")
+public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String courseName;
-    private String tutorName;
+    private String bookName;
     private String type;
+    private String userName;
     private String description;
     @Lob
-    private Blob profilePicture;
-    @Lob
     private Blob image;
-    private String courseDuration;
-    private String minimumAnnualSalary;
-    private String jobsAvailable;
-    private String yourPreferences;
+    @Lob
+    private Blob book;
+    private String author;
+
 }
+

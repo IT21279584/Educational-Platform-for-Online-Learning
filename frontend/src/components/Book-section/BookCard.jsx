@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const BookCard = (props) => {
   const { image, bookName, description, author, book } = props.item;
@@ -7,8 +7,8 @@ const BookCard = (props) => {
   const pdfDataUrl = `data:application/pdf;base64,${book}`;
 
   return (
-    <div className="col-lg-2 col-md-3 my-3 text-center shadow">
-      <div className="card shadow" style={{ width: "14rem" }}>
+    <div className="my-3 text-center shadow col-lg-2 col-md-3">
+      <div className="shadow card" style={{ width: "14rem" }}>
         <img
           src={`data:image/jpeg;base64,${image}`}
           className="card-img-top"
@@ -22,11 +22,11 @@ const BookCard = (props) => {
               <i className="ri-star-fill me-1"></i> {100}K
           </h6>
         </div>     
-          <p className="card-text mb-1">By: {author}</p>
+          <p className="mb-1 card-text">By: {author}</p>
           <hr className="my-1" />         
-          <p className="card-text mb-1">{description}</p>
+          <p className="mb-1 card-text">{description}</p>
           <a href={pdfDataUrl} download={`${bookName}.pdf`}>
-              <button className="btn btn-primary mx-2 mb-2">Download</button>
+              <button className="mx-2 mb-2 btn btn-primary">Download</button>
           </a>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Video from '../components/video/Video';
 import { useParams } from 'react-router-dom';
 import Header from "../components/Header/Header";
@@ -23,7 +23,7 @@ const Course = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/courses/getContent/${courseId}`);
+        const response = await axios.get(`http://localhost:8086/courses/getContent/${courseId}`);
         const { videoList, description, tutorName, profilePicture, courseDuration, minimumAnnualSalary, yourPreferences, image, courseName } = response.data;
 
         setVideoList(videoList);
@@ -49,22 +49,22 @@ const Course = () => {
   }, [courseId]);
 
   if (loading) {
-    return <div className="text-center mt-5">Loading...</div>;
+    return <div className="mt-5 text-center">Loading...</div>;
   }
 
   if (error) {
-    return <div className="text-center mt-5 text-danger">{error}</div>;
+    return <div className="mt-5 text-center text-danger">{error}</div>;
   }
 
   return (
     <div>
       <Header />
       <div className="container mt-5">
-        <div className="row mb-4 align-items-stretch">
+        <div className="mb-4 row align-items-stretch">
           {/* Tutor Profile and Course Details */}
           <div className="col-md-8 d-flex flex-column">
-            <div className="card shadow-sm p-3 mb-4">
-              <div className="d-flex align-items-center mb-4">
+            <div className="p-3 mb-4 shadow-sm card">
+              <div className="mb-4 d-flex align-items-center">
                 <img
                   src={`data:image/jpeg;base64,${courseDetails.profilePicture}`}
                   alt="Profile"
@@ -73,7 +73,7 @@ const Course = () => {
                 />
                 <div>
                   <h3>{courseDetails.tutorName}</h3>
-                  <p className="text-muted mb-0">{courseDetails.courseName}</p>
+                  <p className="mb-0 text-muted">{courseDetails.courseName}</p>
                 </div>
               </div>
               <div className="card-body">
@@ -92,14 +92,14 @@ const Course = () => {
               <img
                 src={`data:image/jpeg;base64,${courseDetails.image}`}
                 alt="Course Image"
-                className="img-fluid rounded shadow-sm"
+                className="rounded shadow-sm img-fluid"
               />
             </div>
           </div>
         </div>
 
         {/* Video Tutorials Section */}
-        <div className="card shadow-sm p-3">
+        <div className="p-3 shadow-sm card">
           <h5>Video Tutorials</h5>
           <hr />
           <div>
