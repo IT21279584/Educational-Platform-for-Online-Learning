@@ -1,6 +1,6 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import PaymentForm from "./components/PaymentForm";
+import PaymentForm from  "../components/PaymentForm.jsx"
 
 const stripe = loadStripe(
   "pk_test_51P9KCWEaWLzdw0TrQF6uKqES8tSnNNoMxHzQrae6XHshyI0cmFPN86oW7lbavKRobgfMDVOuXn7lvZWUSzyeRplS00tTnzF4ao"

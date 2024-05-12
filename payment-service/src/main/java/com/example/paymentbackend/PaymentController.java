@@ -24,11 +24,12 @@ public class PaymentController {
 
         String tokenId = (String) requestData.get("tokenId");
         Integer amount = (Integer) requestData.get("amount");
+        String course = (String) requestData.get("course");
 
         Map<String, Object> params = new HashMap<>();
         params.put("amount", amount); // amount in cents
         params.put("currency", "usd");
-        params.put("description", "Example charge");
+        params.put("description", course);
         params.put("source", tokenId);
 
         try {
@@ -40,4 +41,3 @@ public class PaymentController {
         }
     }
 }
-
