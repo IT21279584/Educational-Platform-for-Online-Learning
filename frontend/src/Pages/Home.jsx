@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import Header from "../components/Header/Header";
+import  { Fragment } from "react";
+import Header from "../components/Navbar.jsx";
 import HeroSection from "../components/Hero-Section/HeroSection";
 
 import AboutUs from "../components/About-us/AboutUs";
@@ -10,7 +10,7 @@ import Features from "../components/Feature-section/Features";
 import Testimonials from "../components/Testimonial/Testimonials";
 
 import Newsletter from "../components/Newsletter/Newsletter";
-import Footer from "../components/Footer/Footer";
+import Footer from "../Pages/Footer.jsx";
 
 const Home = () => {
   return (

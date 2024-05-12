@@ -1,5 +1,3 @@
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
 import { RiDraftLine, RiDiscussLine, RiContactsBookLine } from "react-icons/ri";
 
 const FeatureData = [
@@ -23,19 +21,20 @@ const FeatureData = [
 const Features = () => {
   return (
     <section className="py-5">
-      <Container>
-        <Row>
+      <div className="container mx-auto">
+        <div className="flex flex-wrap justify-center">
           {FeatureData.map((item, index) => (
-            <Col lg="4" md="6" key={index}>
-              <div className="single-feature text-center px-4 py-4">
-                <div className="mb-3">{item.icon}</div>
-                <h6 className="mb-2">{item.title}</h6>
-                <p>{item.desc}</p>
-              </div>
-            </Col>
+            <div
+              className="w-full px-4 py-4 text-center sm:w-1/2 md:w-1/3 single-feature"
+              key={index}
+            >
+              <div className="mb-3">{item.icon}</div>
+              <h6 className="mb-2">{item.title}</h6>
+              <p>{item.desc}</p>
+            </div>
           ))}
-        </Row>
-      </Container>
+        </div>
+      </div>
     </section>
   );
 };

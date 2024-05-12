@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import ReactPlayer from "react-player";
-import chooseImg from "../../assests/images/why-choose-us.png";
+import chooseImg from "../../assets/images/why-choose-us.png";
 
 const ChooseUs = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -8,10 +8,10 @@ const ChooseUs = () => {
   return (
     <section className="py-12">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="grid items-center grid-cols-1 gap-8 md:grid-cols-2">
           {/* Content */}
           <div>
-            <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
+            <h2 className="mb-4 text-3xl font-bold">Why Choose Us</h2>
             <p className="text-gray-700">
               At Learners, we prioritize your success and growth by offering a learning experience that is unmatched. Our platform combines expertly crafted courses with cutting-edge technology to deliver engaging and interactive lessons that cater to your unique learning style. We partner with industry experts and top educators to bring you high-quality content that is up-to-date and relevant. Plus, our flexible scheduling allows you to learn at your own pace, fitting seamlessly into your busy life. Join our vibrant community of learners and benefit from our dedicated support team, ready to assist you every step of the way. Choose Learners for a transformative educational journey that empowers you to reach your full potential.
             </p>
