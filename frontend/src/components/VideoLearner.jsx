@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Pages/Footer";
 import Navbar from "./Navbar";
-import { jwtDecode } from "jwt-decode"; // Import jwtDecode
 
 const LearnerReviews = () => {
   const reviews = [
@@ -42,7 +41,6 @@ const VideoLearner = () => {
   const { videoId } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
   const [courseDetails, setCourseDetails] = useState(null);
-  const [loggedInUser, setLoggedInUser] = useState(null); // State variable to store logged-in user
 
   useEffect(() => {
     const fetchVideoDetails = async () => {
@@ -79,32 +77,9 @@ const VideoLearner = () => {
     fetchVideoDetails();
   }, [videoId]);
 
-  useEffect(() => {
-    // Decode JWT token and set logged-in user
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = jwtDecode(token);
-      setLoggedInUser(decoded);
-    }
-  }, []);
-
-  const handleEnrollClick = async () => {
-    try {
-      if (!loggedInUser) {
-        throw new Error("User not logged in");
-      }
-
-      const enrollResponse = await axios.post(
-        "http://localhost:8084/api/enroll/enroll",
-        { userId: loggedInUser.userId, courseId: courseDetails.courseId }
-      );
-
-      // Handle successful enrollment
-      console.log("Enrollment successful!");
-    } catch (error) {
-      // Handle enrollment error
-      console.error("Error enrolling:", error.message);
-    }
+  const handleEnrollClick = () => {
+    // Add your enroll logic here
+    console.log("Enroll button clicked");
   };
 
   if (!videoDetails || !courseDetails) {

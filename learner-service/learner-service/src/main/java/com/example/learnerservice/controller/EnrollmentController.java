@@ -6,9 +6,6 @@ import com.example.learnerservice.service.EnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/enroll")
 public class EnrollmentController {
@@ -26,9 +23,5 @@ public class EnrollmentController {
         enrollmentService.unenroll(enrollId);
     }
 
-    @GetMapping("/{userId}")
-    public List<Enrollment> getEnrolledCoursesByUserId(@PathVariable Integer userId) {
-        return enrollmentService.getEnrolledCoursesByUserId(userId);
-    }
 
 }
