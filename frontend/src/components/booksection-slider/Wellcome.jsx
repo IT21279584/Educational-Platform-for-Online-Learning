@@ -1,15 +1,14 @@
-
-import "../booksection-slider/Welcome.css";
+import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import Slider from "react-slick";
 
-import img from "../../assests/images/testimonial01.jpg";
+import img from "../../assests/images/book-store2.jpg";
 
 const Wellcome = () => {
   const settings = {
     infinite: true,
     dots: true,
-    speed: 500,
+    speed: 5000,
     slidesToShow: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -25,10 +24,7 @@ const Wellcome = () => {
                 <h2 className="mb-4">Learners Books Store</h2>
 
                 <Slider {...settings}>
-                  <div>
-                    <div className="single__testimonial1">
-                    </div>
-                  </div>
+                  
 
                   <div>
                     <div className="single__testimonial2">
@@ -40,8 +36,8 @@ const Wellcome = () => {
                   </div>
 
                   <div>
-                    <div className="text-center single__testimonial3">
-                      <h3 className="p-4 mb-3 fw-bold" style={{ color: 'black' }}>
+                    <div className="single__testimonial3 text-center">
+                      <h3 className="mb-3 fw-bold p-4" style={{ color: 'black' }}>
                       Books open windows to the world and have the power to transform our perspective.
                       </h3>
                       <h2>Learners Book Store.</h2>
@@ -51,7 +47,7 @@ const Wellcome = () => {
 
                   <div>
                     <div className="single__testimonial4">
-                      <h6 className="pt-4 mb-3 fw-bold">
+                      <h6 className="mb-3 fw-bold pt-4">
                       "Books are the plane, and the train, and the road. They are the destination, and the journey. They are home." — Anna Quindlen
                       </h6>
                       <p>

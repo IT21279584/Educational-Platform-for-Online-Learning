@@ -1,86 +1,73 @@
-
-import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
-
-import "../Footer/footer.css";
+import React from "react";
+import { Container, Row, Col } from "reactstrap";
+import "./footer.css";
 
 const footerQuickLinks = [
   {
     display: "Home",
-    url: "#",
+    onClick: () => window.location.href = "#",
   },
   {
-    display: "About US",
-    url: "#",
+    display: "About Us",
+    onClick: () => window.location.href = "#",
   },
-
   {
     display: "Courses",
-    url: "#",
+    onClick: () => window.location.href = "#",
   },
-
   {
     display: "Blog",
-    url: "#",
+    onClick: () => window.location.href = "#",
   },
 ];
 
 const footerInfoLinks = [
   {
     display: "Privacy Policy",
-    url: "#",
+    onClick: () => window.location.href = "#",
   },
   {
     display: "Membership",
-    url: "#",
+    onClick: () => window.location.href = "#",
   },
-
   {
     display: "Purchases Guide",
-    url: "#",
+    onClick: () => window.location.href = "#",
   },
-
   {
     display: "Terms of Service",
-    url: "#",
+    onClick: () => window.location.href = "#",
   },
 ];
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="py-24">
       <Container>
         <Row>
           <Col lg="3" md="6" className="mb-4">
-            <h2 className="gap-1 d-flex align-items-center">
-              <i className="ri-pantone-line"></i> Learners.
+            <h2 className="d-flex align-items-center gap-1">
+              <i className="ri-pantone-line  text-blue-600"></i> Learners.
             </h2>
-
             <div className="follows">
               <p className="mb-0">Follow us on social media</p>
               <span>
-                {" "}
-                <a href="facebook.com">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                   <i className="ri-facebook-line"></i>
                 </a>
               </span>
-
               <span>
-                {" "}
-                <a href="facebook.com">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                   <i className="ri-instagram-line"></i>
                 </a>
               </span>
-
               <span>
-                {" "}
-                <a href="facebook.com">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                   <i className="ri-linkedin-line"></i>
                 </a>
               </span>
-
               <span>
-                {" "}
-                <a href="facebook.com">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                   <i className="ri-twitter-line"></i>
                 </a>
               </span>
@@ -89,33 +76,30 @@ const Footer = () => {
 
           <Col lg="3" md="6" className="mb-4">
             <h6 className="fw-bold">Explore</h6>
-            <ListGroup className="link__list">
+            <ul className="link__list ">
               {footerQuickLinks.map((item, index) => (
-                <ListGroupItem key={index} className="border-0 ps-0 link__item">
-                  {" "}
-                  <a href={item.url}>{item.display}</a>
-                </ListGroupItem>
+                <li key={index} className="border-0 ps-0 link__item hover:text-blue-500 hover:scale-105 duration-300">
+                  <button onClick={item.onClick} className="footer__button">{item.display}</button>
+                </li>
               ))}
-            </ListGroup>
+            </ul>
           </Col>
 
           <Col lg="3" md="6" className="mb-4">
             <h6 className="fw-bold">Information</h6>
-            <ListGroup className="link__list">
+            <ul className="">
               {footerInfoLinks.map((item, index) => (
-                <ListGroupItem key={index} className="border-0 ps-0 link__item">
-                  {" "}
-                  <a href={item.url}>{item.display}</a>
-                </ListGroupItem>
+                <li key={index} className="border-0 ps-0 link__item  hover:text-blue-500 hover:scale-105 duration-300">
+                  <button onClick={item.onClick} className="footer__button">{item.display}</button>
+                </li>
               ))}
-            </ListGroup>
+            </ul>
           </Col>
 
           <Col lg="3" md="6">
             <h6 className="fw-bold">Get in Touch</h6>
-
             <p>Address: Colombo 07, Sri Lanka</p>
-            <p> Phone: 0717159789 </p>
+            <p>Phone: 0717159789</p>
             <p>Email: learnersabc@gmail.com</p>
           </Col>
         </Row>

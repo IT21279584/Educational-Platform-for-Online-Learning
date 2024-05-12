@@ -1,47 +1,53 @@
+import React from "react";
 
 const CourseCard = (props) => {
-  const { image, courseName, profilePicture, tutorName, courseDuration, yourPreferences, minimumAnnualSalary, jobsAvailable,id} = props.item;
+  const { image, courseName, profilePicture, tutorName, courseDuration, yourPreferences, minimumAnnualSalary, jobsAvailable, id } = props.item;
 
   return (
-    <div className="shadow single__course__item">
-      <div className="course__img">
-        <img src={`data:image/jpeg;base64,${image}`} alt="" className="w-100" />
-      </div>
-
-      <div className="course__details">
-        <h6 className="mb-2 course__title">{courseName}</h6>
-
-        <div className="d-flex align-items-center">
+    <div className="bg-white shadow rounded-lg overflow-hidden">
+      <div className="p-4">
+        {/* Course Image */}
+        <div className="course-img">
           <img
-            src={`data:image/jpeg;base64,${profilePicture}`}
-            alt="Profile"
-            className="rounded-circle img-thumbnail"
-            style={{ width: "50px", height: "50px" }}
+            src={`data:image/jpeg;base64,${image}`}
+            alt={courseName}
+            className="w-full h-40 object-cover"
           />
-          <span className="ms-2">{tutorName}</span>
-          <p className="gap-1 rating d-flex align-items-center ms-auto">
-            <i className="ri-star-fill"></i> {100}K
-          </p>
         </div>
 
-        <div>
-          <p className="mb-0">
-            Duration: <strong>{courseDuration}</strong>
-          </p>
-          <p className="mb-0">
-            Great if you like: <strong>{yourPreferences}</strong>
-          </p>
-          <hr />
-          <p className="mb-0">
-            <strong>{minimumAnnualSalary}</strong> Minimum Salary,{" "}
-            <strong>{jobsAvailable}</strong> Jobs Available
-          </p>
-        </div>
+        {/* Course Details */}
+        <div className="mt-4">
+          {/* Course Title */}
+          <h6 className="text-lg font-semibold mb-2">{courseName}</h6>
 
-        <div className=" d-flex justify-content-between align-items-center">
-          <p className="gap-1 enroll d-flex align-items-center">
-            <a href={`course/${id}`}> Start Now</a>
-          </p>
+          {/* Tutor Details */}
+          <div className="flex items-center mb-2">
+            <img
+              src={`data:image/jpeg;base64,${profilePicture}`}
+              alt="Profile"
+              className="rounded-full w-10 h-10 object-cover"
+            />
+            <span className="ml-2">{tutorName}</span>
+            {/* Rating */}
+            <p className="ml-auto flex items-center gap-1">
+              <i className="ri-star-fill"></i> 100K
+            </p>
+          </div>
+
+          {/* Course Info */}
+          <div className="mb-2">
+            <p className="mb-1"><strong>Duration:</strong> {courseDuration}</p>
+            <p className="mb-1"><strong>Great if you like:</strong> {yourPreferences}</p>
+            <hr className="my-2" />
+            <p><strong>{minimumAnnualSalary}</strong> Minimum Salary, <strong>{jobsAvailable}</strong> Jobs Available</p>
+          </div>
+
+          {/* Enroll Button */}
+          <div className="text-right">
+            <p className="enroll">
+              <a href={`course/${id}`} className="text-blue-500 font-semibold hover:underline">Start Now</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import  { Fragment } from "react";
+import React, { Fragment } from "react";
 import Header from "../components/Header/Header";
 import HeroSection from "../components/Hero-Section/HeroSection";
 
