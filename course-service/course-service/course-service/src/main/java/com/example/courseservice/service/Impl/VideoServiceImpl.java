@@ -12,6 +12,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,7 +28,7 @@ public class VideoServiceImpl implements VideoService {
     private String bucketName;
 
     @Override
-    public String uploadVideo(Integer courseId, MultipartFile file) throws IOException {
+    public String uploadVideo(Integer courseId, MultipartFile file, String description) throws IOException {
         try{
             // Generate a unique key for the video file
             String key = "videos/" + UUID.randomUUID().toString() + "/" + file.getOriginalFilename();
@@ -41,7 +42,7 @@ public class VideoServiceImpl implements VideoService {
             String s3Url = amazonS3.getUrl(bucketName, key).toString();
 
             // Save Amazon S3 URL to database
-            saveVideoUrlToDatabase(courseId,s3Url);
+            saveVideoUrlToDatabase(courseId,s3Url, description);
 
             return s3Url;
 
@@ -51,12 +52,13 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void saveVideoUrlToDatabase(Integer courseId, String s3Url) {
+    public void saveVideoUrlToDatabase(Integer courseId, String s3Url, String description) {
         //set course
         Course course = new Course();
         course.setCourseId(courseId);
         // Save Amazon S3 URL to database
         Video video = new Video();
+        video.setDescription(description);
         video.setS3Url(s3Url);
         video.setCourse(course);
         videoRepository.save(video);
@@ -65,5 +67,15 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public List<Video> getAllVideosByCourseId(Integer courseId) {
         return videoRepository.findByCourseCourseId(courseId);
+    }
+
+    @Override
+    public List<Video> getAllVideos() {
+        return videoRepository.findAll();
+    }
+
+    @Override
+    public Optional<Video> getVideo(Integer videoId) {
+        return videoRepository.findById(videoId);
     }
 }
