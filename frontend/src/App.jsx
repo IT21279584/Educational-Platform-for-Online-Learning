@@ -29,6 +29,7 @@ import Home from "./Pages/Home.jsx";
 import Books from "./components/Book-section/Books.jsx";
 import Course from "./Pages/Course.jsx";
 import SharePage from "./Pages/SharePage.jsx";
+import Payment from "./components/PaymentStripe.jsx";
 
 
 
@@ -77,6 +78,7 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/course/:courseId" element={<Course />} />
         <Route path="/share/:userName" element={<SharePage />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   );
