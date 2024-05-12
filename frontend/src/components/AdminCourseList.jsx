@@ -30,27 +30,29 @@ const AdminCourseList = () => {
     }
   }, []);
 
-  const toggleApproval = async (courseId, isApproved) => {
-    try {
-      // Send the correct isApproved value based on the current status
-      const newIsApproved = isApproved ? 0 : 1;
+const toggleApproval = async (courseId, isApproved) => {
+  try {
+    // Toggle the approval status
+    const newIsApproved = isApproved === 1 ? 0 : 1;
 
-      await axios.put(`http://localhost:8083/api/course/approve/${courseId}`, {
-        isApproved: newIsApproved,
-      });
+    // Send the updated approval status to the backend
+    await axios.put(`http://localhost:8083/api/course/approve/${courseId}`, {
+      isApproved: newIsApproved,
+    });
 
-      // Update course status in the UI
-      setCourses((prevCourses) =>
-        prevCourses.map((course) =>
-          course.courseId === courseId
-            ? { ...course, isApproved: newIsApproved }
-            : course
-        )
-      );
-    } catch (error) {
-      console.error("Error toggling approval:", error);
-    }
-  };
+    // Update the UI with the updated approval status
+    setCourses((prevCourses) =>
+      prevCourses.map((course) =>
+        course.courseId === courseId
+          ? { ...course, isApproved: newIsApproved }
+          : course
+      )
+    );
+  } catch (error) {
+    console.error("Error toggling approval:", error);
+  }
+};
+
 
   return (
     <div>
@@ -148,7 +150,7 @@ const AdminCourseList = () => {
                           toggleApproval(course.courseId, course.isApproved)
                         }
                       >
-                        {course.isApproved ? "Remove Approval" : "Approved"}
+                        {course.isApproved ? "Decline" : "Approve"}
                       </button>
                     </td>
                   </tr>

@@ -22,8 +22,21 @@ import NoteCourseList from "./components/NoteCourseList.jsx";
 import QuizCourseList from "./components/QuizCourseList.jsx";
 import CreateCourse from "./components/CreateCourse.jsx";
 import UserDetails from "./components/UserDetails.jsx";
+
 import SingleCourse from "./components/SingleCourse.jsx";
 // import SingleCoursePage from "./components/SingleCourse.jsx";
+
+import InstructorAllVideos from "./components/InstructorAllVideos.jsx";
+import EditCourse from "./components/EditCourse.jsx";
+import AdminCourseList from "./components/AdminCourseList.jsx";
+import Home from "./Pages/Home.jsx";
+import Books from "./components/Book-section/Books.jsx";
+import Course from "./Pages/Course.jsx";
+import SharePage from "./Pages/SharePage.jsx";
+import Payment from "./components/PaymentStripe.jsx";
+
+
+
 
 function App() {
   return (
@@ -59,6 +72,12 @@ function App() {
         <Route path="/api/user" element={<UserDetails />} />
 
         <Route path="*" element={<NotFound />} />
+
+        <Route path="/library" element={<Home />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/course/:courseId" element={<Course />} />
+        <Route path="/share/:userName" element={<SharePage />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   );
