@@ -1,72 +1,47 @@
-
-import "./about.css";
-import { Container, Row, Col } from "reactstrap";
-import aboutImg from "../../assets/images/about-us.png";
+// Import React and Tailwind CSS
+import React from "react";
+import aboutImg from "../../assests/images/about-us.png";
 import CountUp from "react-countup";
-import "../About-us/about.css";
 
 const AboutUs = () => {
   return (
-    <section>
-      <Container>
-        <Row>
-          <Col lg="6" md="6">
-            <div className="about__img">
-              <img src={aboutImg} alt="" className="w-100" />
-            </div>
-          </Col>
+    <section className="py-16 bg-gray-100">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* About Image */}
+          <div>
+            <img src={aboutImg} alt="About Us" className="w-full rounded-lg shadow-lg" />
+          </div>
 
-          <Col lg="6" md="6">
-            <div className="about__content">
-              <h2>About Us</h2>
-              <p>
-              Welcome to Learners, where education meets innovation.
-              Our platform is designed to provide accessible, 
-              high-quality online learning experiences that empower 
-              individuals to achieve their academic and professional goals.
-              </p>
+          {/* About Content */}
+          <div>
+            <h2 className="text-3xl font-bold mb-4">About Us</h2>
+            <p className="text-gray-700 mb-8">
+              Welcome to Learners, where education meets innovation. Our platform is designed to provide accessible, high-quality online learning experiences that empower individuals to achieve their academic and professional goals.
+            </p>
 
-              <div className="about__counter">
-                <div className="gap-5 d-flex align-items-center">
-                  <div className="single__counter">
-                    <span className="counter">
-                      <CountUp start={0} end={25} duration={2} suffix="K" />
-                    </span>
-
-                    <p className="counter__title">Completed Projects</p>
-                  </div>
-
-                  <div className="single__counter">
-                    <span className="counter">
-                      <CountUp start={0} end={12} duration={2} suffix="M" />
-                    </span>
-
-                    <p className="counter__title">Patient Around World</p>
-                  </div>
-                </div>
-
-                <div className="gap-5 d-flex align-items-center">
-                  <div className="single__counter">
-                    <span className="counter">
-                      <CountUp start={0} end={95} duration={2} suffix="M" />
-                    </span>
-
-                    <p className="counter__title">Ideas Raised Funds</p>
-                  </div>
-
-                  <div className="single__counter">
-                    <span className="counter">
-                      <CountUp start={0} end={5} duration={2} suffix="K" />
-                    </span>
-
-                    <p className="counter__title">Categories Served</p>
-                  </div>
-                </div>
+            {/* Counters */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <CountUp start={0} end={25} duration={2} suffix="K" className="text-4xl font-bold text-blue-600" />
+                <p className="text-gray-600">Completed Projects</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <CountUp start={0} end={12} duration={2} suffix="M" className="text-4xl font-bold text-blue-600" />
+                <p className="text-gray-600">Patients Around the World</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <CountUp start={0} end={95} duration={2} suffix="M" className="text-4xl font-bold text-blue-600" />
+                <p className="text-gray-600">Ideas Raised Funds</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <CountUp start={0} end={5} duration={2} suffix="K" className="text-4xl font-bold text-blue-600" />
+                <p className="text-gray-600">Categories Served</p>
               </div>
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
