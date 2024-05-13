@@ -1,6 +1,4 @@
 package com.example.notification.controller;
-
-
 import com.example.notification.constants.UserConstants;
 import com.example.notification.payload.RequestDto;
 import com.example.notification.payload.ResponseDto;
