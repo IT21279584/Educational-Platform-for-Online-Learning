@@ -59,4 +59,9 @@ public class QuizServiceImpl implements QuizService {
             throw new IllegalArgumentException("Quiz with ID " + quizId + " not found");
         }
     }
+
+    @Override
+    public List<Quiz> getAllQuizes() {
+        return quizRepository.findAll();
+    }
 }

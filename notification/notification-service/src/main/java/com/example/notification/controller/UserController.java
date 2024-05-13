@@ -28,7 +28,7 @@ public class UserController {
                 .build(), HttpStatus.OK);
     }
 
-    @PostMapping("/enroll")
+    @PutMapping("/enroll")
     public ResponseEntity<ResponseDto> enrollUser(@RequestBody RequestDto requestDto){
         userService.enrollUser(requestDto);
         return new ResponseEntity<>(ResponseDto.builder()

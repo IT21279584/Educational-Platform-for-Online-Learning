@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Pages/Footer";
 import Navbar from "./Navbar";
@@ -43,6 +43,8 @@ const VideoLearner = () => {
   const [videoDetails, setVideoDetails] = useState(null);
   const [courseDetails, setCourseDetails] = useState(null);
   const [loggedInUser, setLoggedInUser] = useState(null); // State variable to store logged-in user
+  const navigate = useNavigate(); // Access the navigate function
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   useEffect(() => {
     const fetchVideoDetails = async () => {
@@ -96,11 +98,37 @@ const VideoLearner = () => {
 
       const enrollResponse = await axios.post(
         "http://localhost:8084/api/enroll/enroll",
-        { userId: loggedInUser.userId, courseId: courseDetails.courseId }
+        {
+          userId: loggedInUser.userId,
+          courseId: courseDetails.courseId,
+        }
       );
 
-      // Handle successful enrollment
-      console.log("Enrollment successful!");
+      // Set notification message upon successful enrollment
+      setNotificationMessage("Enrollment successful!");
+
+      // Fetch user details to get the email
+      const userDetailsResponse = await axios.get(
+        `http://localhost:8082/api/users/${loggedInUser.userId}`
+      );
+
+      const userEmail = userDetailsResponse.data.email;
+
+      // Call notification API
+      // const notificationData = {
+      //   userId: loggedInUser.userId,
+      //   courseId: courseDetails.courseId,
+      //   email: userEmail,
+      // };
+      // console.log(notificationData);
+
+      // await axios.put(
+      //   "http://localhost:8085/api/notification/enroll",
+      //   notificationData
+      // );
+
+      // Navigate to payment form
+      navigate("/api/payment");
     } catch (error) {
       // Handle enrollment error
       console.error("Error enrolling:", error.message);

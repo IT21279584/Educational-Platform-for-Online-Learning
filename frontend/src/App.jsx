@@ -77,9 +77,11 @@ function App() {
         <Route path="/library" element={<Home />} />
         <Route path="/books" element={<Books />} />
         <Route path="/course/:courseId" element={<Course />} />
-        <Route path="/shareCourse/:userName" element={<ShareCourse />} />
-        <Route path="/shareBook/:userName" element={<ShareBook />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/shareCourse/:username" element={<ShareCourse />} />
+        <Route path="/shareBook/:username" element={<ShareBook />} />
+
+        
+        <Route path="/api/payment" element={<Payment />} />
       </Routes>
     </Router>
   );

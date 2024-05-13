@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 import Logo from "../assets/logo.svg";
 
 export default function Register() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -53,26 +53,26 @@ export default function Register() {
         "http://localhost:8082/api/users/register",
         formData
       );
-
+      console.log("RESPONSE DATA",response.data);
       const notificationData = {
         userId: response.data.userId, // Adjust as per your response structure
         courseId: 1, // Adjust as per your response structure
         email: response.data.email,
       };
       console.log(notificationData);
-            await axios.put(
-              "http://localhost:8085/api/notification/send",
-              notificationData
-            );
+      await axios.put(
+        "http://localhost:8085/api/notification/send",
+        notificationData
+      );
 
       console.log(response.data);
-  
+
       Swal.fire({
         icon: "success",
         title: "Registration Successful",
         text: "You have successfully registered!",
       });
-      navigate("/api/login")
+      navigate("/api/login");
     } catch (error) {
       console.error("Registration failed:", error);
       Swal.fire({

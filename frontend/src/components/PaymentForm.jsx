@@ -7,8 +7,13 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useState } from "react";
+import Navbar from "./Navbar";
+import Footer from "../Pages/Footer";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
  
 export default function PaymentForm() {
+  const navigate = useNavigate()
   const stripe = useStripe();
   const elements = useElements();
   const [name, setName] = useState("");
@@ -70,22 +75,33 @@ export default function PaymentForm() {
         amount: amount * 100, // Convert amount to cents
         course : course,
       });
-      alert("Payment successful");
+      Swal.fire({
+        icon: "success",
+        title: "Payment Successfully",
+        text: "Payment Successfully.",
+      });
+      navigate("/api/user")
     } catch (error) {
       console.error("Error processing payment:", error);
-      alert("Payment failed. Please try again.");
+      Swal.fire({
+        icon: "error",
+        title: "Payment Failed",
+        text: "Payment failed. Please try again.",
+      });
     }
   };
   return (
     <div>
+      <Navbar />
       {/*Card background */}
       <div className="relative max-w-lg px-4 mx-auto">
+        <h2 className="m-5 text-3xl font-bold">Payment Form</h2>
         <div className="px-8 py-6 bg-white shadow-xl round-lg">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label
                 htmlFor="pay-amount"
-                className="block text-sm font-medium md-1"
+                className="block mb-2 text-sm font-medium text-left md-1"
               >
                 Amount
               </label>
@@ -99,12 +115,12 @@ export default function PaymentForm() {
                 required
               />
             </div>
- 
+
             {/*card number */}
             <div>
               <label
                 htmlFor="card-nr"
-                className="block text-sm font-medium md-1"
+                className="block mb-2 text-sm font-medium text-left md-1"
               >
                 Card Number
               </label>
@@ -116,7 +132,7 @@ export default function PaymentForm() {
             <div>
               <label
                 htmlFor="card-exp"
-                className="block text-sm font-medium md-1"
+                className="block mb-2 text-sm font-medium text-left md-1"
               >
                 Card Exp
               </label>
@@ -125,11 +141,11 @@ export default function PaymentForm() {
                 className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded"
               />
             </div>
- 
+
             <div>
               <label
                 htmlFor="card-cvc"
-                className="block text-sm font-medium md-1"
+                className="block mb-2 text-sm font-medium text-left md-1"
               >
                 Card CVC
               </label>
@@ -139,11 +155,11 @@ export default function PaymentForm() {
                 required
               />
             </div>
- 
+
             <div>
               <label
                 htmlFor="customer-name"
-                className="block text-sm font-medium md-1"
+                className="block mb-2 text-sm font-medium text-left md-1"
               >
                 Name
               </label>
@@ -156,30 +172,31 @@ export default function PaymentForm() {
                 required
               />
             </div>
- 
+
             <div>
               <label
                 htmlFor="course-name"
-                className="block text-sm font-medium md-1"
+                className="block mb-2 text-sm font-medium text-left md-1"
               >
                 Course Name
               </label>
               <input
                 placeholder="Enter Course Name"
-               value={course}
-               onChange={(e) => setCourse(e.target.value)}
-               id="course-name"
+                value={course}
+                onChange={(e) => setCourse(e.target.value)}
+                id="course-name"
                 className="w-full px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded "
                 required
               />
             </div>
- 
-            <button className="flex items-center justify-center px-3 py-2 text-center text-white bg-indigo-600 rounded">
+
+            <button className="flex items-center justify-center px-3 py-2 text-center text-white rounded bg-slate-800">
               Pay
             </button>
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

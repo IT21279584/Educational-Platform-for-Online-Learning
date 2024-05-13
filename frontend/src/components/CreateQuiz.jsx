@@ -46,9 +46,9 @@ const CreateQuiz = () => {
         }
       );
       console.log(response.data); // You can handle success response here
-      alert("Quiz created successfully!");
+      // alert("Quiz created successfully!");
       // Optionally, you can redirect to another page after successful creation
-      window.location.href = "/dashboard"; // Redirect to dashboard
+      window.location.href = "/api/course/quiz/all"; // Redirect to dashboard
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while creating the quiz.");

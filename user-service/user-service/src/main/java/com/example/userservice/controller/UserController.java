@@ -22,7 +22,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
+    public ResponseEntity<User> register(@RequestBody User user) {
         try {
             String username = user.getUsername();
             String password = user.getPassword();
@@ -33,18 +33,18 @@ public class UserController {
             String encryptedPassword = passwordEncoder.encode(password);
 
             User newUser = new User(null, email, username, encryptedPassword, Role.LEARNER, userCode);
-            userService.saveUser(newUser);
+            User savedUser = userService.saveUser(newUser);
 
-            return ResponseEntity.ok().build(); // Return success response
+            return ResponseEntity.ok(savedUser); // Return success response with user data
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body("Email or username is already in use"); // Return error response
+            return ResponseEntity.badRequest().body(null); // Return error response
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()); // Return error response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Return error response
         }
     }
 
     @PostMapping("/instructor/register")
-    public ResponseEntity<?> instructorRegistration(@RequestBody User user) {
+    public ResponseEntity<User> instructorRegistration(@RequestBody User user) {
         try {
             String username = user.getUsername();
             String password = user.getPassword();
@@ -55,22 +55,20 @@ public class UserController {
             String encryptedPassword = passwordEncoder.encode(password);
 
             User newUser = new User(null, email, username, encryptedPassword, Role.INSTRUCTOR, userCode);
-            userService.saveUser(newUser);
+            User savedUser = userService.saveUser(newUser);
 
-            return ResponseEntity.ok().build(); // Return success response
+            return ResponseEntity.ok(savedUser); // Return success response with user data
         } catch (DataIntegrityViolationException e) {
-            return ResponseEntity.badRequest().body("Email or username is already in use"); // Return error response
+            return ResponseEntity.badRequest().body(null); // Return error response
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()); // Return error response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Return error response
         }
     }
-
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable Integer userId) {
         User user = userService.getUserById(userId);
         if (user != null) {
-
             return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.notFound().build();

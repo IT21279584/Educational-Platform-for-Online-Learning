@@ -22,6 +22,6 @@ public class Enrollment {
     @Column(name = "courseId")
     private Integer courseId;
 
-    // Implement equals and hashCode methods
+    @Column(name = "courseTitle") // New field for course title
+    private String courseTitle; // New field for course title
 }
-

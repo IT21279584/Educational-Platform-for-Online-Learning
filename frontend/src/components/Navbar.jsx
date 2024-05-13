@@ -5,15 +5,17 @@ import { jwtDecode } from "jwt-decode";
 const Navbar = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-  // Decode JWT token to get user's role
+  // Decode JWT token to get user's role and username
   const token = localStorage.getItem("token");
   let isInstructor = false;
+  let username = "";
   if (token) {
     const decodedToken = jwtDecode(token);
     const roles = Array.isArray(decodedToken.role)
       ? decodedToken.role
       : [decodedToken.role];
     isInstructor = roles.includes("ROLE_INSTRUCTOR");
+    username = decodedToken.username;
   }
 
   const handleLogout = () => {
@@ -58,17 +60,35 @@ const Navbar = () => {
             >
               Contact
             </Link>
+            <Link
+              to="/library"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+            >
+              Library
+            </Link>
+            <Link
+              to="/books"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+            >
+              Books
+            </Link>
             {isLoggedIn ? (
               // Show logout button if user is logged in
               <>
                 {isInstructor && (
                   <Link
-                    to="/api/instructor/dashboard"
+                    to="/api/course/all"
                     className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
                   >
                     Dashboard
                   </Link>
                 )}
+                <Link
+                  to="/api/user"
+                  className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                >
+                  View Profile
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"

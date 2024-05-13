@@ -29,6 +29,14 @@ const VideoLearner = () => {
     fetchCourseDetails();
   }, [courseId]);
 
+  useEffect(() => {
+    // Retrieve course progress from local storage
+    const storedProgress = localStorage.getItem(`courseProgress_${courseId}`);
+    if (storedProgress !== null) {
+      setProgress(parseInt(storedProgress));
+    }
+  }, [courseId]);
+
   const increaseProgress = () => {
     setProgress((prevProgress) => {
       if (prevProgress >= 100) {
@@ -36,6 +44,8 @@ const VideoLearner = () => {
       }
       return prevProgress + 20;
     });
+    // Update course progress in local storage
+    localStorage.setItem(`courseProgress_${courseId}`, progress + 20);
   };
 
   if (!courseDetails) {
@@ -56,19 +66,19 @@ const VideoLearner = () => {
           </div>
           <div className="mt-4">
             <div className="flex items-center">
-              <div className="w-full bg-gray-200 rounded-full h-4">
+              <div className="w-full h-4 bg-gray-200 rounded-full">
                 <div
-                  className="h-full bg-blue-500 rounded-full"
+                  className="h-full rounded-full bg-slate-800"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>
-              <button
-                className="ml-2 px-2 py-1 text-white rounded bg-blue-500 hover:bg-blue-400 focus:bg-blue-600 focus:outline-none"
+              {/* <button
+                className="px-2 py-1 ml-2 text-white bg-blue-500 rounded hover:bg-blue-400 focus:bg-blue-600 focus:outline-none"
                 onClick={increaseProgress}
                 disabled={progress >= 100}
               >
                 Increase
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
