@@ -22,6 +22,7 @@ import NoteCourseList from "./components/NoteCourseList.jsx";
 import QuizCourseList from "./components/QuizCourseList.jsx";
 import CreateCourse from "./components/CreateCourse.jsx";
 import UserDetails from "./components/UserDetails.jsx";
+import SingleCourse from "./components/SingleCourse.jsx";
 import InstructorAllVideos from "./components/InstructorAllVideos.jsx";
 import EditCourse from "./components/EditCourse.jsx";
 import AdminCourseList from "./components/AdminCourseList.jsx";
@@ -31,8 +32,6 @@ import Course from "./Pages/Course.jsx";
 import ShareCourse from "./Pages/ShareCourse.jsx";
 import ShareBook from "./Pages/ShareBook.jsx";
 import Payment from "./components/PaymentStripe.jsx";
-
-
 
 function App() {
   return (
@@ -67,7 +66,7 @@ function App() {
         <Route path="/api/course/quiz/all" element={<QuizCourseList />} />
         <Route path="/api/course/add" element={<CreateCourse />} />
         <Route path="/api/course/edit/:courseId" element={<EditCourse />} />
-
+        <Route path="/api/course/single/:courseId" element={<SingleCourse />} />
         <Route path="/api/video-learner/:videoId" element={<VideoLearner />} />
 
         <Route path="/api/user" element={<UserDetails />} />
