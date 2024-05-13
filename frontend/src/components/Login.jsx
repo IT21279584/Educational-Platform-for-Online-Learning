@@ -36,20 +36,20 @@ const handleSubmit = async (event) => {
     localStorage.setItem("isLoggedIn", true);
 
     // Decode the JWT token to extract user information
-    const decodedToken = jwtDecode(token);
-    const roles = Array.isArray(decodedToken.role)
-      ? decodedToken.role
-      : [decodedToken.role];
+    // const decodedToken = jwtDecode(token);
+    // const roles = Array.isArray(decodedToken.role)
+    //   ? decodedToken.role
+    //   : [decodedToken.role];
 
     // Check if ROLE_INSTRUCTOR exists in the roles array
-    const isInstructor = roles.includes("ROLE_INSTRUCTOR");
+    // const isInstructor = roles.includes("ROLE_INSTRUCTOR");
 
     // Navigate based on user role
-    if (isInstructor) {
-      navigate("/api/instructor/dashboard");
-    } else {
+    // if (isInstructor) {
+    //   navigate("/api/instructor/dashboard");
+    // } else {
       navigate("/");
-    }
+    // }
   } catch (error) {
     console.error("Login failed:", error);
     Swal.fire({

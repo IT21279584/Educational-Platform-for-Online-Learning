@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import { jwtDecode } from "jwt-decode";
 
 const Navbar = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  // Decode JWT token to get user's role
+  const token = localStorage.getItem("token");
+  let isInstructor = false;
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    const roles = Array.isArray(decodedToken.role)
+      ? decodedToken.role
+      : [decodedToken.role];
+    isInstructor = roles.includes("ROLE_INSTRUCTOR");
+  }
 
   const handleLogout = () => {
     // Clear local storage and redirect to login page
@@ -48,12 +60,22 @@ const Navbar = () => {
             </Link>
             {isLoggedIn ? (
               // Show logout button if user is logged in
-              <button
-                onClick={handleLogout}
-                className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
-              >
-                Logout
-              </button>
+              <>
+                {isInstructor && (
+                  <Link
+                    to="/api/instructor/dashboard"
+                    className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                  >
+                    Dashboard
+                  </Link>
+                )}
+                <button
+                  onClick={handleLogout}
+                  className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               // Show login and register buttons if user is not logged in
               <>
