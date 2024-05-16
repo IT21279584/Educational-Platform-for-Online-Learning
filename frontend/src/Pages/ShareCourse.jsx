@@ -59,7 +59,7 @@ const ShareCourse = () => {
         try {
             // Upload the course details
             const courseResponse = await axios.post(
-                "http://localhost:8080/courses/saveCourse",
+                "http://localhost:8086/courses/saveCourse",
                 courseFormData,
                 {
                     headers: {
@@ -78,7 +78,7 @@ const ShareCourse = () => {
 
                     // Upload each video
                     const videoResponse = await axios.post(
-                        "http://localhost:8080/courses/saveVideo",
+                        "http://localhost:8086/courses/saveVideo",
                         videoFormData,
                         {
                             headers: {
@@ -103,9 +103,9 @@ const ShareCourse = () => {
 
     return (
         <div className="container my-5">
-            <h2 className="text-center mb-4">Share a New Course</h2>
+            <h2 className="mb-4 text-center">Share a New Course</h2>
             
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="courseName">Course Name</label>
                 <input
                     type="text"
@@ -117,7 +117,7 @@ const ShareCourse = () => {
                 />
             </div>
             
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="description">Description</label>
                 <textarea
                     id="description"
@@ -128,7 +128,7 @@ const ShareCourse = () => {
                 />
             </div>
 
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="type">Type</label>
                 <select
                     id="type"
@@ -146,7 +146,7 @@ const ShareCourse = () => {
                 </select>
             </div>
 
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="profilePicture">Profile Picture</label>
                 <input
                     type="file"
@@ -157,7 +157,7 @@ const ShareCourse = () => {
                 />
             </div>
 
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="image">Course Image</label>
                 <input
                     type="file"
@@ -168,7 +168,7 @@ const ShareCourse = () => {
                 />
             </div>
 
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="courseDuration">Course Duration</label>
                 <input
                     type="text"
@@ -180,7 +180,7 @@ const ShareCourse = () => {
                 />
             </div>
 
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="minimumAnnualSalary">Minimum Annual Salary</label>
                 <input
                     type="text"
@@ -192,7 +192,7 @@ const ShareCourse = () => {
                 />
             </div>
 
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="maximumAnnualSalary">Jobs Availability</label>
                 <input
                     type="text"
@@ -204,7 +204,7 @@ const ShareCourse = () => {
                 />
             </div>
 
-            <div className="form-group mb-3">
+            <div className="mb-3 form-group">
                 <label htmlFor="yourPreferences">Your Preferences</label>
                 <input
                     type="text"
@@ -222,7 +222,7 @@ const ShareCourse = () => {
 
             {videos.map((video, index) => (
                 <div key={index} className="mb-3">
-                    <div className="form-group mb-3">
+                    <div className="mb-3 form-group">
                         <label htmlFor={`videoLecture${index}`}>Lecture {index + 1}</label>
                         <input
                             type="text"
@@ -235,7 +235,7 @@ const ShareCourse = () => {
                         />
                     </div>
                     
-                    <div className="form-group mb-3">
+                    <div className="mb-3 form-group">
                         <label htmlFor={`videoFile${index}`}>Video File</label>
                         <input
                             type="file"

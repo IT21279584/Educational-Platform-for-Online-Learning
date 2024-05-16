@@ -23,7 +23,7 @@ const Course = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/courses/getContent/${courseId}`);
+        const response = await axios.get(`http://localhost:8086/courses/getContent/${courseId}`);
         const { videoList, description, tutorName, profilePicture, courseDuration, minimumAnnualSalary, yourPreferences, image, courseName } = response.data;
 
         setVideoList(videoList);
@@ -49,11 +49,11 @@ const Course = () => {
   }, [courseId]);
 
   if (loading) {
-    return <div className="text-center mt-5">Loading...</div>;
+    return <div className="mt-5 text-center">Loading...</div>;
   }
 
   if (error) {
-    return <div className="text-center mt-5 text-danger">{error}</div>;
+    return <div className="mt-5 text-center text-danger">{error}</div>;
   }
 
   return (
@@ -61,10 +61,10 @@ const Course = () => {
        <Header/>
  <div className="container mt-5">
      
-      <div className="row mb-4">
+      <div className="mb-4 row">
         <div className="col-md-8">
           {/* Tutor Profile and Course Details */}
-          <div className="d-flex align-items-center mb-4">
+          <div className="mb-4 d-flex align-items-center">
             <img
               src={`data:image/jpeg;base64,${courseDetails.profilePicture}`}
               alt="Profile"
@@ -73,7 +73,7 @@ const Course = () => {
             />
             <div>
               <h3>{courseDetails.tutorName}</h3>
-              <p className="text-muted mb-0">{courseDetails.courseName}</p>
+              <p className="mb-0 text-muted">{courseDetails.courseName}</p>
             </div>
           </div>
           <h5>Course Details</h5>
@@ -87,7 +87,7 @@ const Course = () => {
           <img
             src={`data:image/jpeg;base64,${courseDetails.image}`}
             alt="Course Image"
-            className="img-fluid mt-3"
+            className="mt-3 img-fluid"
           />
         </div>
       </div>

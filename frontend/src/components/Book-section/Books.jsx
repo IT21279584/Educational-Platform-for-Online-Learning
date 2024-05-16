@@ -10,7 +10,7 @@ const Books = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await fetch("http://localhost:8080/books/all-books");
+                const response = await fetch("http://localhost:8086/books/all-books");
                 const data = await response.json();
                 setData(data);
             } catch (error) {
@@ -35,8 +35,8 @@ const Books = () => {
             <Container>
                 <Row>
                     <Col lg="12" className="mb-5 py-14">
-                        <div className=" d-flex flex-column justify-center items-center align-items-center">
-                            <div className=" font-bold">
+                        <div className="items-center justify-center d-flex flex-column align-items-center">
+                            <div className="font-bold ">
                                 <h1>Find The Book You Need</h1>
                             </div>
                             <br /><br />

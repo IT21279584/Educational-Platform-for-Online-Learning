@@ -44,7 +44,7 @@ public class Course {
     private CourseCategory category;
 
     @Column(name = "isApproved")
-    private Integer isApproved;
+    private Integer isApproved = 0;
 
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)

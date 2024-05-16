@@ -1,11 +1,9 @@
 version: '3.8'
 services:
-  spring-boot-app:
+  payment-service:
     build: .
-    ports:
-      - "8083:8080"
     network_mode: "host"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://127.0.0.1:5432/RMS_DB
+      SPRING_DATASOURCE_URL: jdbc:postgresql://127.0.0.1:5432/Course-Service
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres

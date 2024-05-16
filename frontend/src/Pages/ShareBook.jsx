@@ -41,7 +41,7 @@ function ShareBook() {
         formData.append('file', bookFile);
 
         try {
-            const response = await axios.post('http://localhost:8080/books/upload-book', formData, {
+            const response = await axios.post('http://localhost:8086/books/upload-book', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -103,7 +103,7 @@ function ShareBook() {
                 <div className="form-group">
                     <label htmlFor="description">Description:</label>
                     <textarea
-                        className="form-control mb-3"
+                        className="mb-3 form-control"
                         id="description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -114,20 +114,20 @@ function ShareBook() {
                     <label htmlFor="image">Image:</label>
                     <input
                         type="file"
-                        className="form-control-file mb-3"
+                        className="mb-3 form-control-file"
                         id="image"
                         accept="image/*"
                         onChange={handleImageChange}
                         required
                     />
                     {/* Image preview */}
-                    {imagePreview && <img src={imagePreview} alt="Image Preview" className="img-fluid mt-3" style={{ maxWidth: '200px' }} />}
+                    {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-3 img-fluid" style={{ maxWidth: '200px' }} />}
                 </div>
                 <div className="form-group">
                     <label htmlFor="bookFile">Book File:</label>
                     <input
                         type="file"
-                        className="form-control-file mb-3"
+                        className="mb-3 form-control-file"
                         id="bookFile"
                         accept="application/pdf"
                         onChange={(e) => setBookFile(e.target.files[0])}

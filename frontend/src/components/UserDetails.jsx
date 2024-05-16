@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom"; // Import Link component
+import Footer from "../Pages/Footer";
+import Navbar from "./Navbar";
 
 const UserDetails = () => {
   const [user, setUser] = useState(null);
@@ -41,66 +43,63 @@ const UserDetails = () => {
   }, []);
 
   return (
-    <div className="min-h-screen px-4 py-12 bg-gray-100 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto overflow-hidden bg-white rounded-md shadow-md">
-        <div className="px-4 py-5 sm:px-6">
-          <h1 className="text-2xl font-semibold text-gray-800">User Details</h1>
-        </div>
-        {loading ? (
-          <div className="flex items-center justify-center py-8">
+    <div>
+      <Navbar/>
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="w-full max-w-4xl p-8 mx-4 bg-white rounded-lg shadow-md md:mx-auto">
+          <h1 className="mb-8 text-3xl font-semibold text-gray-800">
+            User Details
+          </h1>
+          {loading ? (
             <p className="text-lg text-gray-600">Loading...</p>
-          </div>
-        ) : user ? (
-          <div className="px-4 py-5 sm:p-6">
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <p className="mt-1 text-sm text-gray-900">{user.username}</p>
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <p className="mt-1 text-sm text-gray-900">{user.email}</p>
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Enrolled Courses
-              </label>
-              <div className="grid grid-cols-1 gap-4">
-                {enrolledCourses.map((course) => (
-                  <div
-                    key={course.id}
-                    className="bg-white rounded-md shadow-md"
-                  >
-                    {/* Wrap course title in Link component */}
-                    <Link
-                      to={`/api/course/single/${course.courseId}`}
-                      className="cursor-pointer"
-                    >
-                      <div className="p-4">
-                        <h2 className="text-lg font-semibold text-gray-800">
-                          {course.courseTitle}
-                        </h2>
-                        <p className="mt-2 text-sm text-gray-600">
-                          {course.description}
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
+          ) : user ? (
+            <div className="mb-8">
+              <div className="mb-4">
+                <p className="text-lg font-medium text-gray-700">Name</p>
+                <p className="mt-1 text-lg text-gray-900">{user.username}</p>
+              </div>
+              <div className="mb-4">
+                <p className="text-lg font-medium text-gray-700">Email</p>
+                <p className="mt-1 text-lg text-gray-900">{user.email}</p>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="flex items-center justify-center py-8">
-            <p className="text-lg text-red-600">
+          ) : (
+            <p className="mb-8 text-lg text-red-600">
               Failed to fetch user details.
             </p>
-          </div>
-        )}
+          )}
+          <h2 className="mb-4 text-3xl font-semibold text-gray-800">
+            Enrolled Courses
+          </h2>
+          {loading ? (
+            <p className="text-lg text-gray-600">Loading...</p>
+          ) : enrolledCourses.length > 0 ? (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {enrolledCourses.map((course) => (
+                <div
+                  key={course.id}
+                  className="p-6 bg-gray-100 rounded-lg shadow-md"
+                >
+                  <Link
+                    to={`/api/course/single/${course.courseId}`}
+                    className="cursor-pointer"
+                  >
+                    <h3 className="mb-2 text-xl font-semibold text-gray-800">
+                      {course.courseTitle}
+                    </h3>
+                    <p className="text-lg text-gray-700">
+                      {course.description}
+                    </p>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-lg text-gray-600">No courses enrolled yet.</p>
+          )}
+        </div>
       </div>
+      <Footer/>
     </div>
   );
 };

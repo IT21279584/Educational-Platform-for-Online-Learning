@@ -50,7 +50,7 @@ public class CourseServiceImpl implements CourseService {
 
         // Set the user ID in the course entity
         course.setUserId(userDTO.getUserId());
-        course.setIsApproved(0);
+        course.setIsApproved(1);
 
         // Save the course
         return courseRepository.save(course);
@@ -101,6 +101,7 @@ public class CourseServiceImpl implements CourseService {
         }else{
             existingCourse.setIsApproved(1);
         }
+
 
         return courseRepository.save(existingCourse); // Save the existing course, not updatedCourse
     }
