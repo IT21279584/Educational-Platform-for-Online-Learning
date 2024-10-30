@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: library-service
+  template:
+    metadata:
+      labels:
+        app: library-service
+    spec:
+      containers:
+        - name: library-service
+          image: library-service:latest
+          ports:
+            - containerPort: 8086
+          imagePullPolicy: Never

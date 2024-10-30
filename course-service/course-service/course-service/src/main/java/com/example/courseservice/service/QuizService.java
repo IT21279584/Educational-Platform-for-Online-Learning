@@ -11,4 +11,5 @@ public interface QuizService {
     Quiz createQuiz(Integer courseId, QuizRequest quizRequest);
     List<Question> getAllQuestionsByQuizIdAndCourseId(Integer quizId, Integer courseId);
 
+
 }

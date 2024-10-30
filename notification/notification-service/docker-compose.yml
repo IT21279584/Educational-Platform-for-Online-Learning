@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  notification-service:
+    build: .
+    network_mode: "host"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://127.0.0.1:5432/Course-Service
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres

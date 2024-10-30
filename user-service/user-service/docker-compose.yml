@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  user-service:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/Course-Service
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: Course-Service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
